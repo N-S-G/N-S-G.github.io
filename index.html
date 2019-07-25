@@ -233,100 +233,6 @@
 
 
   
-    <article id="post-线程安全与线程不安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/23/线程安全与线程不安全/">线程的安全与不安全</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/23/线程安全与线程不安全/" class="archive-article-date">
-  	<time datetime="2019-07-23T08:41:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一.    <strong>线程安全与线程不安全</strong></p>
-<p>1、线程安全：</p>
-<p>指多个线程在执行同一段代码的时候采用加锁机制，使每次的执行结果和单线程执行的结果都是一样的，不存在执行程序时出现意外结果。</p>
-<p>2、线程不安全：</p>
-<p>是指不提供加锁机制保护，有可能出现多个线程先后更改数据造成所得到的数据是脏数据。</p>
-<p>举例说明：假设售票系统有1000张票，A和B同时来买票，如果是线程不安全，那么可能售票系统可能出现1000-1去同时执行的情况，最终结果是A和B都买完后剩下999张票，而不是998张。</p>
-<p><img src="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/1563845059896.png" alt="1563845059896"></p>
-<p><strong>扩展资料</strong></p>
-<p>1、引起线程安全问题的原因：</p>
-<p>线程安全问题都是由全局变量及静态变量引起的。</p>
-<p>若每个线程中对全局变量、静态变量只有读操作，而无写操作，一般来说，这个全局变量是线程安全的；若有多个线程同时执行写操作，一般都需要考虑<a href="https://www.baidu.com/s?wd=线程同步&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">线程同步</a>，否则的话就可能影响线程安全。</p>
-<p>2、解决多线程并发访问资源安全问题的方法：</p>
-<p>（1）synchronized</p>
-<p>synchronized关键字，就是用来控制【线程同步】[^①]的，保证我们的线程在多线程环境下，不被多个线程同时执行，确保我们数据的完整性，使用方法一般是加在方法上。</p>
-<p>（2）Lock</p>
-<p>Lock是在Java1.6被引入进来的，Lock的引入让锁有了可操作性，是指我们在需要的时候去手动的获取锁和释放锁，甚至我们还可以中断获取以及超时获取的同步特性，从使用上synchronized使用起来比Lock更方便。</p>
-<p>[^①]: 线程同步：即当有一个线程在对内存进行操作时，其他线程都不可以对这个内存地址进行操作，直到该线程完成操作， 其他线程才能对该内存地址进行操作，而其他线程又处于等待状态，实现线程同步的方法有很多，临界区对象就是其中一种。</p>
-<p>二.    <strong>线程同步</strong></p>
-<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>​        在一般情况下，创建一个线程是不能提高程序的执行效率的，所以要创建多个线程。但是多个线程同时运行的时候可能调用线程函数，在多个线程同时对同一个内存地址进行写入，由于CPU时间调度上的问题，写入数据会被多次的覆盖，所以就要使线程同步。</p>
-<p>​        同步就是协同步调，按预定的先后次序进行运行。如：你说完，我再说。</p>
-<p>​        “同”字从字面上容易理解为一起动作</p>
-<p>​        其实不是，“同”字应是指协同、协助、互相配合。</p>
-<p>​        如进程、线程同步，可理解为进程或线程A和B一块配合，A执行到一定程度时要依靠B的某个结果，于是停下来，示意B运行；B依言执行，再将结果给A；A再继续操作。</p>
-<p>​        所谓同步，就是在发出一个功能调用时，在没有得到结果之前，该调用就不返回，同时其它线程也不能调用这个方法。按照这个定义，其实绝大多数函数都是同步调用（例如sin, isdigit等）。但是一般而言，我们在说同步、异步的时候，特指那些需要其他部件协作或者需要一定时间完成的任务。例如Window API函数SendMessage。该函数发送一个消息给某个窗口，在对方处理完消息之前，这个函数不返回。当对方处理完毕以后，该函数才把消息处理函数所返回的LRESULT值返回给调用者。</p>
-<p>​        在多线程编程里面，一些敏感数据不允许被多个线程同时访问，此时就使用同步访问技术，保证数据在任何时刻，最多有一个线程访问，以保证数据的完整性。</p>
-<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><p>在Java里面，通过synchronized进行同步的保证。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class MyTest&#123;</span><br><span class="line">    private static final Object lock=new Object();</span><br><span class="line">    public static synchronized void test()&#123;</span><br><span class="line">        //同步的方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   public void test2()&#123;</span><br><span class="line">      synchronized(lock)&#123;</span><br><span class="line">          //方法级同步，也可以使用this实现对象级同步</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在C++ 11里面，通过std::mutex的加锁和解锁来保证。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;mutex&gt;</span><br><span class="line">#include&lt;thread&gt;</span><br><span class="line">usingnamespacestd;</span><br><span class="line">mutexm;</span><br><span class="line">voidthreadFunc(inti)</span><br><span class="line">&#123;</span><br><span class="line">    m.lock();</span><br><span class="line">    //在这里写上你需要的代码</span><br><span class="line">    m.unlock();</span><br><span class="line">&#125;</span><br><span class="line">intmain()</span><br><span class="line">&#123;</span><br><span class="line">    threadt1(threadFunc,1);</span><br><span class="line">    threadt2(threadFunc,2);</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    return0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>三.    <strong>同步与异步</strong><br>        同步:发送一个请求,等待返回,然后再发送下一个请求<br>        异步:发送一个请求,不等待返回,随时可以再发送下一个请求<br>        同步可以避免出现死锁，读脏数据的发生，一般共享某一资源的时候用，如果每个人都有修改权限，同时修改一个文件，有可能使一个人读取另一个人已经删除的内容，就会出错，同步就会按顺序来修改。<br>        异步则是可以提高效率了，现在cpu都是双核，四核，异步处理的话可以同时做多项工作，当然必须保证是可以并发处理的。<br>        同步和异步最大的区别就在于。一个需要等待，一个不需要等待。<br>        比如广播，就是一个异步例子。发起者不关心接收者的状态。不需要等待接收者的返回信息<br>        电话，就是一个同步例子。发起者需要等待接收者，接通电话后，通信才开始。需要等待接收者的返回信息</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/23/线程安全与线程不安全/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -368,6 +274,100 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/23/我的第一篇博客文章/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-线程安全与线程不安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/线程安全与线程不安全/">线程的安全与不安全</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/23/线程安全与线程不安全/" class="archive-article-date">
+  	<time datetime="2019-07-23T08:41:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一.    <strong>线程安全与线程不安全</strong></p>
+<p>1、线程安全：</p>
+<p>指多个线程在执行同一段代码的时候采用加锁机制，使每次的执行结果和单线程执行的结果都是一样的，不存在执行程序时出现意外结果。</p>
+<p>2、线程不安全：</p>
+<p>是指不提供加锁机制保护，有可能出现多个线程先后更改数据造成所得到的数据是脏数据。</p>
+<p>举例说明：假设售票系统有1000张票，A和B同时来买票，如果是线程不安全，那么可能售票系统可能出现1000-1去同时执行的情况，最终结果是A和B都买完后剩下999张票，而不是998张。</p>
+<p><img src="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/1563845059896.png?raw=true" alt="1563845059896"></p>
+<p><strong>扩展资料</strong></p>
+<p>1、引起线程安全问题的原因：</p>
+<p>线程安全问题都是由全局变量及静态变量引起的。</p>
+<p>若每个线程中对全局变量、静态变量只有读操作，而无写操作，一般来说，这个全局变量是线程安全的；若有多个线程同时执行写操作，一般都需要考虑<a href="https://www.baidu.com/s?wd=线程同步&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao" target="_blank" rel="noopener">线程同步</a>，否则的话就可能影响线程安全。</p>
+<p>2、解决多线程并发访问资源安全问题的方法：</p>
+<p>（1）synchronized</p>
+<p>synchronized关键字，就是用来控制【线程同步】[^①]的，保证我们的线程在多线程环境下，不被多个线程同时执行，确保我们数据的完整性，使用方法一般是加在方法上。</p>
+<p>（2）Lock</p>
+<p>Lock是在Java1.6被引入进来的，Lock的引入让锁有了可操作性，是指我们在需要的时候去手动的获取锁和释放锁，甚至我们还可以中断获取以及超时获取的同步特性，从使用上synchronized使用起来比Lock更方便。</p>
+<p>[^①]: 线程同步：即当有一个线程在对内存进行操作时，其他线程都不可以对这个内存地址进行操作，直到该线程完成操作， 其他线程才能对该内存地址进行操作，而其他线程又处于等待状态，实现线程同步的方法有很多，临界区对象就是其中一种。</p>
+<p>二.    <strong>线程同步</strong></p>
+<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>​        在一般情况下，创建一个线程是不能提高程序的执行效率的，所以要创建多个线程。但是多个线程同时运行的时候可能调用线程函数，在多个线程同时对同一个内存地址进行写入，由于CPU时间调度上的问题，写入数据会被多次的覆盖，所以就要使线程同步。</p>
+<p>​        同步就是协同步调，按预定的先后次序进行运行。如：你说完，我再说。</p>
+<p>​        “同”字从字面上容易理解为一起动作</p>
+<p>​        其实不是，“同”字应是指协同、协助、互相配合。</p>
+<p>​        如进程、线程同步，可理解为进程或线程A和B一块配合，A执行到一定程度时要依靠B的某个结果，于是停下来，示意B运行；B依言执行，再将结果给A；A再继续操作。</p>
+<p>​        所谓同步，就是在发出一个功能调用时，在没有得到结果之前，该调用就不返回，同时其它线程也不能调用这个方法。按照这个定义，其实绝大多数函数都是同步调用（例如sin, isdigit等）。但是一般而言，我们在说同步、异步的时候，特指那些需要其他部件协作或者需要一定时间完成的任务。例如Window API函数SendMessage。该函数发送一个消息给某个窗口，在对方处理完消息之前，这个函数不返回。当对方处理完毕以后，该函数才把消息处理函数所返回的LRESULT值返回给调用者。</p>
+<p>​        在多线程编程里面，一些敏感数据不允许被多个线程同时访问，此时就使用同步访问技术，保证数据在任何时刻，最多有一个线程访问，以保证数据的完整性。</p>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><p>在Java里面，通过synchronized进行同步的保证。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class MyTest&#123;</span><br><span class="line">    private static final Object lock=new Object();</span><br><span class="line">    public static synchronized void test()&#123;</span><br><span class="line">        //同步的方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   public void test2()&#123;</span><br><span class="line">      synchronized(lock)&#123;</span><br><span class="line">          //方法级同步，也可以使用this实现对象级同步</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在C++ 11里面，通过std::mutex的加锁和解锁来保证。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;mutex&gt;</span><br><span class="line">#include&lt;thread&gt;</span><br><span class="line">usingnamespacestd;</span><br><span class="line">mutexm;</span><br><span class="line">voidthreadFunc(inti)</span><br><span class="line">&#123;</span><br><span class="line">    m.lock();</span><br><span class="line">    //在这里写上你需要的代码</span><br><span class="line">    m.unlock();</span><br><span class="line">&#125;</span><br><span class="line">intmain()</span><br><span class="line">&#123;</span><br><span class="line">    threadt1(threadFunc,1);</span><br><span class="line">    threadt2(threadFunc,2);</span><br><span class="line">    t1.join();</span><br><span class="line">    t2.join();</span><br><span class="line">    return0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三.    <strong>同步与异步</strong><br>        同步:发送一个请求,等待返回,然后再发送下一个请求<br>        异步:发送一个请求,不等待返回,随时可以再发送下一个请求<br>        同步可以避免出现死锁，读脏数据的发生，一般共享某一资源的时候用，如果每个人都有修改权限，同时修改一个文件，有可能使一个人读取另一个人已经删除的内容，就会出错，同步就会按顺序来修改。<br>        异步则是可以提高效率了，现在cpu都是双核，四核，异步处理的话可以同时做多项工作，当然必须保证是可以并发处理的。<br>        同步和异步最大的区别就在于。一个需要等待，一个不需要等待。<br>        比如广播，就是一个异步例子。发起者不关心接收者的状态。不需要等待接收者的返回信息<br>        电话，就是一个同步例子。发起者需要等待接收者，接通电话后，通信才开始。需要等待接收者的返回信息</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/23/线程安全与线程不安全/">展开全文 >></a>
         </p>
       
 
