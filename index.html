@@ -226,7 +226,7 @@
 
 <p>####扩展<br><strong><em>集合工具类-Collections</em></strong></p>
 <p><strong>知识点1：对象集合排序 ：按照元素的自然排序方式进行排序</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">static</span> &lt;T extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt;  <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;T&gt; list)</span></span></span><br><span class="line"><span class="function"><span class="comment">//</span></span></span><br><span class="line"><span class="function"><span class="keyword">static</span> &lt;T&gt;  <span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;T&gt; list,Comparator&lt;? <span class="keyword">super</span> T&gt; c)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据元素的自然顺序对指定列表按照升序进行排列</span></span><br><span class="line"><span class="keyword">static</span> &lt;T extends Comparable&lt;? <span class="keyword">super</span> T&gt;&gt;  <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;T&gt; list)</span></span></span><br><span class="line"><span class="function"><span class="comment">//根据指定的比较器产生的顺序对指定列表进行排序</span></span></span><br><span class="line"><span class="function"><span class="keyword">static</span> &lt;T&gt;  <span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;T&gt; list,Comparator&lt;? <span class="keyword">super</span> T&gt; c)</span></span></span><br></pre></td></tr></table></figure>
 
 <p><strong><em>帮助理解：</em></strong><br>public static &lt;T extends Comparable&lt;? super T&gt;&gt; void sort (List<t> list)</t></p>
 <p>（1）首先：public static void sort(List list)</p>
@@ -234,6 +234,8 @@
 <p>（3）想要排序先比较，要有可比较性,因此T必须是Comparable的子类：public static <t extends comparable> void sort(List<t> list)</t></t></p>
 <p>（4）Comparable接口也有泛型：public static &lt;T extends Comparable<t>&gt; void sort(List<t> list)</t></t></p>
 <p>（5）T的父类也行，&lt;? super T&gt;表示Comparable&lt;&gt;中的类型下限为T：public static &lt;T extends Comparable&lt;? super T&gt;&gt; void sort (List<t> list)</t></p>
+<p>​            <a href="http://ifeve.com/difference-between-super-t-and-extends-t-in-java/" target="_blank" rel="noopener">List&lt;? super T&gt;、Set&lt;? extends T&gt;的声明，是什么意思呢？</a></p>
+<p>*&lt;? super T&gt;表示包括T在内的任何T的父类，&lt;? extends T&gt;表示包括T在内的任何T的子类。*</p>
 
       
 
