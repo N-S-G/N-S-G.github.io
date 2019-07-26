@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Set/List/Map | NSG</title>
+  <title>javascript与jquery的复习 | NSG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta name="keywords" content="学习总结,java,jquery,html5,springMVC,springboot">
-<meta property="og:type" content="website">
-<meta property="og:title" content="NSG">
-<meta property="og:url" content="http://yoursite.com/tags/Set-List-Map/index.html">
+  <meta name="description" content="##javascript与jquery的复习##script对象与jquery对象的相互转化 123456var js = document.getElementsByTagName(&amp;quot;div&amp;quot;)[0];js.innerHTML= &amp;quot;JS&amp;quot;;//js对象转化为jq对象$(js).text(&amp;quot;js对象转化为jq对象&amp;quot;);//jq对象转化为j">
+<meta name="keywords" content="javascript,jquery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript与jquery的复习">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/javascript与jquery的复习/index.html">
 <meta property="og:site_name" content="NSG">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="##javascript与jquery的复习##script对象与jquery对象的相互转化 123456var js = document.getElementsByTagName(&amp;quot;div&amp;quot;)[0];js.innerHTML= &amp;quot;JS&amp;quot;;//js对象转化为jq对象$(js).text(&amp;quot;js对象转化为jq对象&amp;quot;);//jq对象转化为j">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-26T09:21:13.850Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NSG">
-<meta name="twitter:description" content="个人技术博客">
+<meta name="twitter:title" content="javascript与jquery的复习">
+<meta name="twitter:description" content="##javascript与jquery的复习##script对象与jquery对象的相互转化 123456var js = document.getElementsByTagName(&amp;quot;div&amp;quot;)[0];js.innerHTML= &amp;quot;JS&amp;quot;;//js对象转化为jq对象$(js).text(&amp;quot;js对象转化为jq对象&amp;quot;);//jq对象转化为j">
   
     <link rel="alternative" href="/atom.xml" title="NSG" type="application/atom+xml">
   
@@ -158,71 +159,254 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-javascript与jquery的复习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/25/java中的集合/" class="archive-article-date">
-  	<time datetime="2019-07-25T07:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/25/java中的集合/">java中的集合</a>
+    <h1 class="article-title" itemprop="name">
+      javascript与jquery的复习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/07/22/javascript与jquery的复习/" class="archive-article-date">
+  	<time datetime="2019-07-22T07:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##javascript与jquery的复习##<br><strong>script对象与jquery对象的相互转化</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var js = document.getElementsByTagName(&quot;div&quot;)[0];</span><br><span class="line">js.innerHTML= &quot;JS&quot;;</span><br><span class="line">//js对象转化为jq对象</span><br><span class="line">$(js).text(&quot;js对象转化为jq对象&quot;);</span><br><span class="line">//jq对象转化为js对象</span><br><span class="line">$(js)[0].innerHTML = &quot;jq对象转化为js对象&quot;</span><br></pre></td></tr></table></figure>
+
+<p>jquery选择器</p>
+<ol start="0">
+<li><p>######简单区别</p>
+<ul>
+<li>js———-onclike   innerText    value<br>   jq———clike()    text()    val()</li>
+</ul>
+</li>
+<li><p>######选择器</p>
+<ul>
+<li>$(“#id”);//id选择器</li>
+<li>$(“.class”);//类选择器</li>
+<li>$(“p,a”)//分组选择器</li>
+<li>$(“div#id/div.class”)</li>
+<li>$(“*”) </li>
+</ul>
+</li>
+<li><p>######选择后，添加样式  使用css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">   	$(&quot;*&quot;).css(&quot;color&quot;,&quot;red&quot;);//单个属性添加</span><br><span class="line">   	$(&quot;#div1&quot;).css(&#123;&quot;boder&quot;:&quot;1px soliblack&quot;,&quot;width&quot;:&quot;200px&quot;&#125;);//多个属性添加</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>######选择后   属性设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">***eg:&lt;input type=&quot;text&quot; name=&quot;&quot; id=&quot;username&quot; value=&quot;&quot; /&gt;***</span><br><span class="line">			</span><br><span class="line">	$(&quot;input[type]&quot;).css(&quot;boder&quot;,&quot;1px solid black&quot;);//查input包含type属性的标签</span><br><span class="line">	$(&quot;[id=username]&quot;).val(&quot;123&quot;);//jq修改输入框的值。val() 取值，var(&quot;xx&quot;) 赋值</span><br><span class="line">	$(&quot;[id=username]&quot;)[0].value=&quot;1111&quot;//转化为为js赋值</span><br><span class="line">	$(&quot;[id!=xx]&quot;).css(&quot;boder&quot;,&quot;1px solid black&quot;);//不等于</span><br><span class="line">	$(&quot;[id$=xx]&quot;).css(&quot;boder&quot;,&quot;1px solid black&quot;);//以xx结尾</span><br><span class="line">	$(&quot;[id^=xx]&quot;).css(&quot;boder&quot;,&quot;1px solid black&quot;);//以xx开头</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>######基本过滤选择器</p>
+<ul>
+<li>first：第一个标签</li>
+<li>last：最后一个标签</li>
+<li>even ：偶数标签  p:even</li>
+<li>odd：技术标签    p:odd</li>
+<li>lt gt的判断   无论是表格还是标签   索引值是从 0 开始，第一个元素是偶数 (0)，第二个元素是奇数 (1)，以此类推</li>
+<li>eq(n) 等于n的标签</li>
+<li>lt(n) 小于n的标签</li>
+<li>gt(n) 大于n的标签<br><strong>eg:    $(“p:lt(2)”).css(“background-color”, “yellow”);</strong></li>
+</ul>
+</li>
+<li><p>######内容过滤选择器</p>
+<ul>
+<li>$(“div:not(:contains(‘di’))”).css(“boder”,”1px solid black”);  //找到div内容不包含内容“di”的div标签</li>
+<li>$(“div:contains(‘di’)”)  //找到div内容包含“di”的div标签</li>
+<li>$(“div:empty”)  //找到div内容为空的div标签</li>
+<li>$(“div:not(:empty)”)  //找到div内容不为空的div标签</li>
+<li>$(“div:has(.mini)”)  //子标签类名为mini的父div标签</li>
+</ul>
+</li>
+<li><p>######可见性过滤器</p>
+<ul>
+<li>$(“div1:hidden”).show();</li>
+<li>$(“div1:visible”).hide();</li>
+<li>$(“div1”).toggle();<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">eg：</span><br><span class="line">	$(<span class="string">"#btnwe"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//隐藏div</span></span><br><span class="line">		$(<span class="string">"div:visible"</span>).hide();</span><br><span class="line">		<span class="comment">//显示div</span></span><br><span class="line">		$(<span class="string">"div:hidden"</span>).show();</span><br><span class="line">		<span class="comment">//显示/隐藏 div   不停转换</span></span><br><span class="line">		$(<span class="string">"div"</span>).toggle();</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>#######表单过滤器######</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"input:enabled"</span>).css(<span class="string">"boder"</span>,<span class="string">"1px solid red"</span>); <span class="comment">//可编辑的input</span></span><br><span class="line">	$(<span class="string">"input:disabled"</span>) <span class="comment">//不可编辑的input</span></span><br><span class="line">				</span><br><span class="line">	<span class="keyword">var</span> cs=$(<span class="string">"input:checkbox:checked"</span>) <span class="comment">//选中checkbox的个数</span></span><br><span class="line">	alert(cs.length);</span><br><span class="line">	$.each(cs,<span class="function"><span class="keyword">function</span>(<span class="params">index,item</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//alert(item.value);</span></span><br><span class="line">	alert($(item).val());</span><br><span class="line">&#125;);</span><br><span class="line">				</span><br><span class="line">	$(<span class="string">"option:select"</span>).text();<span class="comment">//下拉列表选中的内容</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>######javascript复习######</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">javascript</span></span><br><span class="line"><span class="comment">	1."="赋值符号 "=="等于符号 "==="全等符号</span></span><br><span class="line"><span class="comment">	2.在javascript中 5 == "5" 返回值为true</span></span><br><span class="line"><span class="comment">	3.在C语言中，3/2 = 1，在javascript中3/2 = 1.5</span></span><br><span class="line"><span class="comment">	4.当字符串（输入一个浮点数）转换为Number时，会舍弃小数点后面的部分。</span></span><br><span class="line"><span class="comment">	5.当字符串转换为Number时。300px→NaN</span></span><br><span class="line"><span class="comment">	6.当字符串转换为Int时，会舍弃非数字的后面的字符。300px→300</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	7.定时器使用</span></span><br><span class="line"><span class="comment">		1.设置超时定时器</span></span><br><span class="line"><span class="comment">			var timeout = null;</span></span><br><span class="line"><span class="comment">			timeout = setTimeout(function()&#123;alert("2秒后出现数据");&#125;,2000);</span></span><br><span class="line"><span class="comment">		2.取消超时定时器</span></span><br><span class="line"><span class="comment">			clearTimeout(timeout);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	8.页面的前进和后退</span></span><br><span class="line"><span class="comment">		1.window.history.forward();</span></span><br><span class="line"><span class="comment">		2.window.history.go(1);   //参数为正整数，表示向</span></span><br><span class="line"><span class="comment">		3.window.history.back();		   </span></span><br><span class="line"><span class="comment">		4.window.history.go(-1); //参数为负整数，表示向后几步</span></span><br><span class="line"><span class="comment">	9.页面刷新 window.location.reload();</span></span><br><span class="line"><span class="comment">	10.getElementById() 返回对拥有指定 id 的第一个对象的引用。</span></span><br><span class="line"><span class="comment">	11.getElementsByName()，返回带有指定名称的对象集合。大小</span></span><br><span class="line"><span class="comment">		// var x=document.getElementsByName("x");</span></span><br><span class="line"><span class="comment">		// alert(x.length);</span></span><br><span class="line"><span class="comment">	12.getElementsByTagName()。返回带有指定标签名的对象集合。 返回一个数组，可以赋值</span></span><br><span class="line"><span class="comment">	//document.getElementsByTagName("P")[0].innerHTML="Hello World";</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Set/List/Map</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jquery</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java-集合//" class="article-tag-list-link color3">java/集合</a>
+        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript/jquery//" class="article-tag-list-link color2">jquery</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/22/javascript与jquery的复习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/07/23/多态，抽象类，接口/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          多态，抽象类，接口
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/07/21/搭建hexo框架的博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在github上搭建基于hexo框架的个人博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -245,9 +429,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -315,7 +499,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Set/List/Map</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客，hexo，github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Set</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">List</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Map</a>
               </li>
             
             <div class="clearfix"></div>
