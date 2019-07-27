@@ -267,6 +267,113 @@
 
 
   
+    <article id="post-线程的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/25/线程的学习/">java中的集合</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/25/线程的学习/" class="archive-article-date">
+  	<time datetime="2019-07-25T07:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>线程的学习<br>一.线程</p>
+<p><strong>知识点1：程序，进程，线程的基本概念和关系</strong></p>
+<p><strong>程序：</strong>是计算机<strong><em>指令的集合</em></strong>.程序是<strong><em>一组静态的指令集</em></strong>，不占用系统运行资源,不能被系统调度，也不能作为独立运行的单位,它<strong><em>以文件的形式存储在磁盘上</em></strong>。</p>
+<p><strong>进程：</strong>是一个程序在其自身的地址空间中的<strong><em>一次执行活动</em></strong>。比如，打开一个记事本，就是调用了一个进程。<strong><em>进程是资源申请、调度和独立运行的单位</em></strong>，因此，它使用系统中的运行资源；而程序不能申请系统资源，一个程序可以对应多个进程，例如QQ多开</p>
+<p><strong>线程：</strong>被称为轻量进程，并且大多数现代操作系统把<strong><em>线程作为时序调度的基本单元</em></strong>，而不是进程，在没有明确协调的情况下，线程相互间同时或异步地执行。因为线程共亨其所属进程的内存地址空间</p>
+<table>
+<thead>
+<tr>
+<th align="center">系统运行程序的基本单位</th>
+<th align="center">进程</th>
+<th align="center">有独立的内存空间和系统资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>进程中执行运算的最小单位</strong></td>
+<td align="center"><strong>线程</strong></td>
+<td align="center"><strong>处理器分配给线程，真正运行在处理器上的是线程</strong></td>
+</tr>
+</tbody></table>
+<p><strong>知识点2：为什么要进行多线程编程</strong></p>
+<p>1、可以更好的实现并行<br>2、恰当地使用线程时，可以降低开发和维护的开销，并且能够提高复杂应用的性能。<br>3、CPU在线程之间开关时的开销远比进程要少得多。因开关线程都在同一地址空间内，只需要修改线程控制表或队列，不涉及地址空间和其他工作。<br>4、创建和撤销线程的开销较之进程要少。</p>
+        
+          <a class="article-more-a" href="/2019/07/25/线程的学习/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线程//" class="article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/25/线程的学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-String，StringBuffer和StringBuilder类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -637,47 +744,9 @@
 </ul>
 </li>
 <li><p>######选择后，添加样式  使用css</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">   	$(&quot;*&quot;).css(&quot;color&quot;,&quot;red&quot;);//单个属性添加</span><br><span class="line">   	$(&quot;#div1&quot;).css(&#123;&quot;boder&quot;:&quot;1px soliblack&quot;,&quot;width&quot;:&quot;200px&quot;&#125;);//多个属性添加</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>######选择后   属性设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">***eg:&lt;input type=&quot;text&quot; name=&quot;&quot; id=&quot;username&quot; value=&quot;&quot; /&gt;***</span><br><span class="line">			</span><br><span class="line">	$(&quot;input[type]&quot;).css(&quot;boder&quot;,&quot;1px solid black&quot;);//查input包含type属性的标签</span><br><span class="line">	$(&quot;[id=username]&quot;).val(&quot;123&quot;);//jq修改输入框的值。val() 取值，var(&quot;xx&quot;) 赋值</span><br><span class="line">	$(&quot;[id=username]&quot;)[0].value=&quot;1111&quot;//转化为为js赋值</span><br><span class="line">	$(&quot;[id!=xx]&quot;).css(&quot;boder&quot;,&quot;1px solid black&quot;);//不等于</span><br><span class="line">	$(&quot;[id$=xx]&quot;).css(&quot;boder&quot;,&quot;1px solid black&quot;);//以xx结尾</span><br><span class="line">	$(&quot;[id^=xx]&quot;).css(&quot;boder&quot;,&quot;1px solid black&quot;);//以xx开头</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>######基本过滤选择器</p>
-<ul>
-<li>first：第一个标签</li>
-<li>last：最后一个标签</li>
-<li>even ：偶数标签  p:even</li>
-<li>odd：技术标签    p:odd</li>
-<li>lt gt的判断   无论是表格还是标签   索引值是从 0 开始，第一个元素是偶数 (0)，第二个元素是奇数 (1)，以此类推</li>
-<li>eq(n) 等于n的标签</li>
-<li>lt(n) 小于n的标签</li>
-<li>gt(n) 大于n的标签<br><strong>eg:    $(“p:lt(2)”).css(“background-color”, “yellow”);</strong></li>
-</ul>
-</li>
-<li><p>######内容过滤选择器</p>
-<ul>
-<li>$(“div:not(:contains(‘di’))”).css(“boder”,”1px solid black”);  //找到div内容不包含内容“di”的div标签</li>
-<li>$(“div:contains(‘di’)”)  //找到div内容包含“di”的div标签</li>
-<li>$(“div:empty”)  //找到div内容为空的div标签</li>
-<li>$(“div:not(:empty)”)  //找到div内容不为空的div标签</li>
-<li>$(“div:has(.mini)”)  //子标签类名为mini的父div标签</li>
-</ul>
-</li>
-<li><p>######可见性过滤器</p>
-<ul>
-<li>$(“div1:hidden”).show();</li>
-<li>$(“div1:visible”).hide();</li>
-<li>$(“div1”).toggle();<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">eg：</span><br><span class="line">	$(<span class="string">"#btnwe"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//隐藏div</span></span><br><span class="line">		$(<span class="string">"div:visible"</span>).hide();</span><br><span class="line">		<span class="comment">//显示div</span></span><br><span class="line">		$(<span class="string">"div:hidden"</span>).show();</span><br><span class="line">		<span class="comment">//显示/隐藏 div   不停转换</span></span><br><span class="line">		$(<span class="string">"div"</span>).toggle();</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>#######表单过滤器######</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"input:enabled"</span>).css(<span class="string">"boder"</span>,<span class="string">"1px solid red"</span>); <span class="comment">//可编辑的input</span></span><br><span class="line">	$(<span class="string">"input:disabled"</span>) <span class="comment">//不可编辑的input</span></span><br><span class="line">				</span><br><span class="line">	<span class="keyword">var</span> cs=$(<span class="string">"input:checkbox:checked"</span>) <span class="comment">//选中checkbox的个数</span></span><br><span class="line">	alert(cs.length);</span><br><span class="line">	$.each(cs,<span class="function"><span class="keyword">function</span>(<span class="params">index,item</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//alert(item.value);</span></span><br><span class="line">	alert($(item).val());</span><br><span class="line">&#125;);</span><br><span class="line">				</span><br><span class="line">	$(<span class="string">"option:select"</span>).text();<span class="comment">//下拉列表选中的内容</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>######javascript复习######</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">javascript</span></span><br><span class="line"><span class="comment">	1."="赋值符号 "=="等于符号 "==="全等符号</span></span><br><span class="line"><span class="comment">	2.在javascript中 5 == "5" 返回值为true</span></span><br><span class="line"><span class="comment">	3.在C语言中，3/2 = 1，在javascript中3/2 = 1.5</span></span><br><span class="line"><span class="comment">	4.当字符串（输入一个浮点数）转换为Number时，会舍弃小数点后面的部分。</span></span><br><span class="line"><span class="comment">	5.当字符串转换为Number时。300px→NaN</span></span><br><span class="line"><span class="comment">	6.当字符串转换为Int时，会舍弃非数字的后面的字符。300px→300</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	7.定时器使用</span></span><br><span class="line"><span class="comment">		1.设置超时定时器</span></span><br><span class="line"><span class="comment">			var timeout = null;</span></span><br><span class="line"><span class="comment">			timeout = setTimeout(function()&#123;alert("2秒后出现数据");&#125;,2000);</span></span><br><span class="line"><span class="comment">		2.取消超时定时器</span></span><br><span class="line"><span class="comment">			clearTimeout(timeout);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	8.页面的前进和后退</span></span><br><span class="line"><span class="comment">		1.window.history.forward();</span></span><br><span class="line"><span class="comment">		2.window.history.go(1);   //参数为正整数，表示向</span></span><br><span class="line"><span class="comment">		3.window.history.back();		   </span></span><br><span class="line"><span class="comment">		4.window.history.go(-1); //参数为负整数，表示向后几步</span></span><br><span class="line"><span class="comment">	9.页面刷新 window.location.reload();</span></span><br><span class="line"><span class="comment">	10.getElementById() 返回对拥有指定 id 的第一个对象的引用。</span></span><br><span class="line"><span class="comment">	11.getElementsByName()，返回带有指定名称的对象集合。大小</span></span><br><span class="line"><span class="comment">		// var x=document.getElementsByName("x");</span></span><br><span class="line"><span class="comment">		// alert(x.length);</span></span><br><span class="line"><span class="comment">	12.getElementsByTagName()。返回带有指定标签名的对象集合。 返回一个数组，可以赋值</span></span><br><span class="line"><span class="comment">	//document.getElementsByTagName("P")[0].innerHTML="Hello World";</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2019/07/22/javascript与jquery的复习/#more">more >></a>
+        
       
 
       
@@ -942,15 +1011,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -967,6 +1036,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
             
             <div class="clearfix"></div>

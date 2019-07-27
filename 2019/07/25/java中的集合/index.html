@@ -18,7 +18,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564058923843.png?raw=true">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564103422107.png?raw=true">
-<meta property="og:updated_time" content="2019-07-26T09:11:21.774Z">
+<meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564230232233.png?raw=true">
+<meta property="og:updated_time" content="2019-07-27T12:25:53.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java中的集合">
 <meta name="twitter:description" content="##集合  知识点1：Collection接口 Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set 知识点2：Collection重要方法 123456789boolean add(E e)boolean addAll(Collection&amp;lt;?extends E&amp;gt; c)void clear(">
@@ -238,8 +239,25 @@
 <p>（3）想要排序先比较，要有可比较性,因此T必须是Comparable的子类：public static <t extends comparable> void sort(List<t> list)</t></t></p>
 <p>（4）Comparable接口也有泛型：public static &lt;T extends Comparable<t>&gt; void sort(List<t> list)</t></t></p>
 <p>（5）T的父类也行，&lt;? super T&gt;表示Comparable&lt;&gt;中的类型下限为T：public static &lt;T extends Comparable&lt;? super T&gt;&gt; void sort (List<t> list)</t></p>
-<p>​            <a href="http://ifeve.com/difference-between-super-t-and-extends-t-in-java/" target="_blank" rel="noopener">List&lt;? super T&gt;、Set&lt;? extends T&gt;的声明，是什么意思呢？</a></p>
+<p>​    【引用】        <a href="http://ifeve.com/difference-between-super-t-and-extends-t-in-java/" target="_blank" rel="noopener">List&lt;? super T&gt;、Set&lt;? extends T&gt;的声明，是什么意思呢？</a></p>
 <p>*&lt;? super T&gt;表示包括T在内的任何T的父类，&lt;? extends T&gt;表示包括T在内的任何T的子类。*</p>
+<p><strong>思考</strong></p>
+<p>【引用】</p>
+<p>一.<a href="https://www.cnblogs.com/cathyqq/p/5279859.html" target="_blank" rel="noopener">Java中Collection和Collections的区别？</a>         </p>
+<p>1、java.util.Collection 是一个<strong>集合接口（集合类的一个顶级接口）</strong>。它提供了对集合对象进行基本操作的通用接口方法。Collection接口在Java 类库中有很多具体的实现。Collection接口的意义是为各种具体的集合提供了最大化的统一操作方式，其直接继承接口有List与Set。</p>
+<p> Collection<br>├List<br>│├LinkedList<br>│├ArrayList<br>│└Vector<br>│　└Stack<br>└Set</p>
+<p>2、Collections则是集合类的一个工具类/帮助类，其中提供了一系列静态方法，用于对集合中元素进行排序、搜索以及线程安全等各种操作。</p>
+<p>二.Array和Arrays有什么区别？</p>
+<p>ARRAY类提供了动态创建和访问 Java 数组的方法。ARRAYS此类包含用来操作数组（比如排序和搜索）的各种方法。此类还包含一个允许将数组作为列表来查看的静态工厂。</p>
+<p>Array的api如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public final class Array extends Object</span><br><span class="line">The Array class provides static methods to dynamically create and access Java arrays.</span><br><span class="line">Array permits widening conversions to occur during a get or set operation, but throws an IllegalArgumentException if a narrowing conversion would occur.</span><br></pre></td></tr></table></figure>
+
+<p>Arrays的api如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class Arrays extends Object</span><br><span class="line">This class contains various methods for manipulating arrays (such as sorting and searching). This class also contains a static factory that allows arrays to be viewed as lists.</span><br><span class="line">The methods in this class all throw a NullPointerException, if the specified array reference is null, except where noted.</span><br></pre></td></tr></table></figure>
+
+<p>也即是：<br>1．数组类Array<br>Java中最基本的一个存储结构。<br>提供了动态创建和访问 Java 数组的方法。其中的元素的类型必须相同。效率高，但容量固定且无法动态改变。<br>它无法判断其中实际存有多少元素，length只是告诉我们array的容量。<br>2、静态类Arrays<br>此静态类专门用来操作array ，提供搜索、排序、复制等静态方法。<br>equals()：比较两个array是否相等。array拥有相同元素个数，且所有对应元素两两相等。<br>sort()：用来对array进行排序。<br>binarySearch()：在排好序的array中寻找元素。<br>Arrays.asList(array):将数组array转化为List</p>
+<p><strong><em>补充：</em></strong></p>
+<p><img src="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564230232233.png?raw=true" alt="Collection接口的继承关系"></p>
 
       
 
@@ -368,8 +386,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2019/07/24/String，StringBuffer和StringBuilder类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">String，StringBuffer和StringBuilder类</div>
+    <a href="/2019/07/25/线程的学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java中的集合</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -495,15 +513,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,6 +538,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
             
             <div class="clearfix"></div>
