@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>java中的集合 | NSG</title>
+  <title>java中的线程学习 | NSG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="线程的学习一.线程 知识点1：程序，进程，线程的基本概念和关系 程序：是计算机指令的集合.程序是一组静态的指令集，不占用系统运行资源,不能被系统调度，也不能作为独立运行的单位,它以文件的形式存储在磁盘上。 进程：是一个程序在其自身的地址空间中的一次执行活动。比如，打开一个记事本，就是调用了一个进程。进程是资源申请、调度和独立运行的单位，因此，它使用系统中的运行资源；而程序不能申请系统资源，一个程序">
 <meta name="keywords" content="线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java中的集合">
-<meta property="og:url" content="http://yoursite.com/2019/07/25/线程的学习/index.html">
+<meta property="og:title" content="java中的线程学习">
+<meta property="og:url" content="http://yoursite.com/2019/07/26/线程的学习/index.html">
 <meta property="og:site_name" content="NSG">
 <meta property="og:description" content="线程的学习一.线程 知识点1：程序，进程，线程的基本概念和关系 程序：是计算机指令的集合.程序是一组静态的指令集，不占用系统运行资源,不能被系统调度，也不能作为独立运行的单位,它以文件的形式存储在磁盘上。 进程：是一个程序在其自身的地址空间中的一次执行活动。比如，打开一个记事本，就是调用了一个进程。进程是资源申请、调度和独立运行的单位，因此，它使用系统中的运行资源；而程序不能申请系统资源，一个程序">
 <meta property="og:locale" content="zh-CN">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564154256713.png?raw=true">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564228689254.png?raw=true">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564229220504.png?raw=true">
-<meta property="og:image" content="c:%5CUsers%5Cmypc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564229345823.png">
-<meta property="og:updated_time" content="2019-07-27T12:35:36.357Z">
+<meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564229345823.png?raw=true">
+<meta property="og:updated_time" content="2019-07-27T12:43:53.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java中的集合">
+<meta name="twitter:title" content="java中的线程学习">
 <meta name="twitter:description" content="线程的学习一.线程 知识点1：程序，进程，线程的基本概念和关系 程序：是计算机指令的集合.程序是一组静态的指令集，不占用系统运行资源,不能被系统调度，也不能作为独立运行的单位,它以文件的形式存储在磁盘上。 进程：是一个程序在其自身的地址空间中的一次执行活动。比如，打开一个记事本，就是调用了一个进程。进程是资源申请、调度和独立运行的单位，因此，它使用系统中的运行资源；而程序不能申请系统资源，一个程序">
 <meta name="twitter:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564143309748.png?raw=true">
   
@@ -178,13 +178,13 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java中的集合
+      java中的线程学习
     </h1>
   
 
         
-        <a href="/2019/07/25/线程的学习/" class="archive-article-date">
-  	<time datetime="2019-07-25T07:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
+        <a href="/2019/07/26/线程的学习/" class="archive-article-date">
+  	<time datetime="2019-07-26T12:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
 </a>
         
       </header>
@@ -303,8 +303,9 @@
 <p>四、线程池</p>
 <p>1、传统线程池</p>
 <p>​        <a href="https://www.cnblogs.com/dolphin0520/p/3932921.html" target="_blank" rel="noopener">https://www.cnblogs.com/dolphin0520/p/3932921.html</a></p>
-<p>​        java.uitl.concurrent.ThreadPoolExecutor类是线程池中最核心的一个类</p>
-<p><img src="C:%5CUsers%5Cmypc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1564229345823.png" alt="1564229345823"></p>
+<p>​        java.uitl.concurrent.ThreadPoolExecutor类是线程池中最核心的一个类，因此如果要透彻地了解Java中的线程池，必须先了解这个类。下面我们来看一下ThreadPoolExecutor类的具体实现源码。</p>
+<p>　　在ThreadPoolExecutor类中提供了四个构造方法：</p>
+<p><img src="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564229345823.png?raw=true" alt="四个构造方法"></p>
 <p>1) corePoolSize：核心池的大小，默认情况下，在创建了线程池后，线程池中的线程数为0，当有任务来之后，就会创建一个线程去执行任务，当线程池中的线程数目达到corePoolSize后，就会把到达的任务放到缓存队列当中；</p>
 <p>2) maximumPoolSize：线程池最大线程数，表示在线程池中最多能创建多少个线程；</p>
 <p>3) keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。当线程池中的线程数大于corePoolSize时，keepAliveTime才会起作用，如果一个线程空闲的时间达到keepAliveTime，则会终止；</p>
@@ -433,7 +434,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/25/线程的学习/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/26/线程的学习/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -447,18 +448,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/25/java中的集合/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java中的集合
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/24/String，StringBuffer和StringBuilder类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">String，StringBuffer和StringBuilder类</div>
+    <a href="/2019/07/25/java中的集合/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java中的集合</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -584,15 +576,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
               </li>
              
               <li class="article-tag-list-item">

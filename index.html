@@ -160,6 +160,113 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-线程的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/26/线程的学习/">java中的线程学习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/26/线程的学习/" class="archive-article-date">
+  	<time datetime="2019-07-26T12:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>线程的学习<br>一.线程</p>
+<p><strong>知识点1：程序，进程，线程的基本概念和关系</strong></p>
+<p><strong>程序：</strong>是计算机<strong><em>指令的集合</em></strong>.程序是<strong><em>一组静态的指令集</em></strong>，不占用系统运行资源,不能被系统调度，也不能作为独立运行的单位,它<strong><em>以文件的形式存储在磁盘上</em></strong>。</p>
+<p><strong>进程：</strong>是一个程序在其自身的地址空间中的<strong><em>一次执行活动</em></strong>。比如，打开一个记事本，就是调用了一个进程。<strong><em>进程是资源申请、调度和独立运行的单位</em></strong>，因此，它使用系统中的运行资源；而程序不能申请系统资源，一个程序可以对应多个进程，例如QQ多开</p>
+<p><strong>线程：</strong>被称为轻量进程，并且大多数现代操作系统把<strong><em>线程作为时序调度的基本单元</em></strong>，而不是进程，在没有明确协调的情况下，线程相互间同时或异步地执行。因为线程共亨其所属进程的内存地址空间</p>
+<table>
+<thead>
+<tr>
+<th align="center">系统运行程序的基本单位</th>
+<th align="center">进程</th>
+<th align="center">有独立的内存空间和系统资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>进程中执行运算的最小单位</strong></td>
+<td align="center"><strong>线程</strong></td>
+<td align="center"><strong>处理器分配给线程，真正运行在处理器上的是线程</strong></td>
+</tr>
+</tbody></table>
+<p><strong>知识点2：为什么要进行多线程编程</strong></p>
+<p>1、可以更好的实现并行<br>2、恰当地使用线程时，可以降低开发和维护的开销，并且能够提高复杂应用的性能。<br>3、CPU在线程之间开关时的开销远比进程要少得多。因开关线程都在同一地址空间内，只需要修改线程控制表或队列，不涉及地址空间和其他工作。<br>4、创建和撤销线程的开销较之进程要少。</p>
+        
+          <a class="article-more-a" href="/2019/07/26/线程的学习/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线程//" class="article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/26/线程的学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java中的集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -238,113 +345,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/25/java中的集合/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-线程的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/线程的学习/">java中的集合</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/25/线程的学习/" class="archive-article-date">
-  	<time datetime="2019-07-25T07:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>线程的学习<br>一.线程</p>
-<p><strong>知识点1：程序，进程，线程的基本概念和关系</strong></p>
-<p><strong>程序：</strong>是计算机<strong><em>指令的集合</em></strong>.程序是<strong><em>一组静态的指令集</em></strong>，不占用系统运行资源,不能被系统调度，也不能作为独立运行的单位,它<strong><em>以文件的形式存储在磁盘上</em></strong>。</p>
-<p><strong>进程：</strong>是一个程序在其自身的地址空间中的<strong><em>一次执行活动</em></strong>。比如，打开一个记事本，就是调用了一个进程。<strong><em>进程是资源申请、调度和独立运行的单位</em></strong>，因此，它使用系统中的运行资源；而程序不能申请系统资源，一个程序可以对应多个进程，例如QQ多开</p>
-<p><strong>线程：</strong>被称为轻量进程，并且大多数现代操作系统把<strong><em>线程作为时序调度的基本单元</em></strong>，而不是进程，在没有明确协调的情况下，线程相互间同时或异步地执行。因为线程共亨其所属进程的内存地址空间</p>
-<table>
-<thead>
-<tr>
-<th align="center">系统运行程序的基本单位</th>
-<th align="center">进程</th>
-<th align="center">有独立的内存空间和系统资源</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><strong>进程中执行运算的最小单位</strong></td>
-<td align="center"><strong>线程</strong></td>
-<td align="center"><strong>处理器分配给线程，真正运行在处理器上的是线程</strong></td>
-</tr>
-</tbody></table>
-<p><strong>知识点2：为什么要进行多线程编程</strong></p>
-<p>1、可以更好的实现并行<br>2、恰当地使用线程时，可以降低开发和维护的开销，并且能够提高复杂应用的性能。<br>3、CPU在线程之间开关时的开销远比进程要少得多。因开关线程都在同一地址空间内，只需要修改线程控制表或队列，不涉及地址空间和其他工作。<br>4、创建和撤销线程的开销较之进程要少。</p>
-        
-          <a class="article-more-a" href="/2019/07/25/线程的学习/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/线程//" class="article-tag-list-link color3">线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/25/线程的学习/">展开全文 >></a>
         </p>
       
 
@@ -1011,15 +1011,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
               </li>
              
               <li class="article-tag-list-item">
