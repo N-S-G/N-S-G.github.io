@@ -9,7 +9,7 @@
   <title>线程的安全与不安全 | NSG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一.    线程安全与线程不安全 1、线程安全： 指多个线程在执行同一段代码的时候采用加锁机制，使每次的执行结果和单线程执行的结果都是一样的，不存在执行程序时出现意外结果。 2、线程不安全： 是指不提供加锁机制保护，有可能出现多个线程先后更改数据造成所得到的数据是脏数据。 举例说明：假设售票系统有1000张票，A和B同时来买票，如果是线程不安全，那么可能售票系统可能出现1000-1去同时执行的情况">
-<meta name="keywords" content="学习总结,java,jquery,html5,springMVC,springboot">
+<meta name="keywords" content="线程安全,同步与异步">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程的安全与不安全">
 <meta property="og:url" content="http://yoursite.com/2019/07/23/线程安全与线程不安全/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="一.    线程安全与线程不安全 1、线程安全： 指多个线程在执行同一段代码的时候采用加锁机制，使每次的执行结果和单线程执行的结果都是一样的，不存在执行程序时出现意外结果。 2、线程不安全： 是指不提供加锁机制保护，有可能出现多个线程先后更改数据造成所得到的数据是脏数据。 举例说明：假设售票系统有1000张票，A和B同时来买票，如果是线程不安全，那么可能售票系统可能出现1000-1去同时执行的情况">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1563845059896.png?raw=true">
-<meta property="og:updated_time" content="2019-07-26T09:16:31.368Z">
+<meta property="og:updated_time" content="2019-07-27T12:52:10.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程的安全与不安全">
 <meta name="twitter:description" content="一.    线程安全与线程不安全 1、线程安全： 指多个线程在执行同一段代码的时候采用加锁机制，使每次的执行结果和单线程执行的结果都是一样的，不存在执行程序时出现意外结果。 2、线程不安全： 是指不提供加锁机制保护，有可能出现多个线程先后更改数据造成所得到的数据是脏数据。 举例说明：假设售票系统有1000张票，A和B同时来买票，如果是线程不安全，那么可能售票系统可能出现1000-1去同时执行的情况">
@@ -244,7 +244,37 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">同步与异步</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线程//" class="article-tag-list-link color3">线程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线程/同步与异步//" class="article-tag-list-link color1">同步与异步</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -318,8 +348,8 @@
     </a>
   
   
-    <a href="/2019/07/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/07/23/多态，抽象类，接口/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多态，抽象类，接口</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -445,6 +475,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">StringBuffer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">StringBuilder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
@@ -453,11 +499,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多态，抽象类，接口</a>
+                <a href="javascript:void(0)" class="js-tag color3">多态</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客，hexo，github</a>
+                <a href="javascript:void(0)" class="js-tag color4">抽象类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">同步与异步</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,10 +540,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Map</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
             
             <div class="clearfix"></div>
