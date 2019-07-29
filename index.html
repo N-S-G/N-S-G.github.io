@@ -160,6 +160,406 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL基础三" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/29/MySQL基础三/">Mysql基础（三）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/29/MySQL基础三/" class="archive-article-date">
+  	<time datetime="2019-07-29T12:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>*<em>JDBC操作Mysql *</em></p>
+<p>1、加载驱动，需要下载驱动jar包，例如：6.0.6.jar</p>
+<p>Java中反射？？？？–Class类forName方法获取Class类型的对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(“com.mysql.cj.jdbc.Driver”);</span><br></pre></td></tr></table></figure>
+
+<p>2、获取连接 DriverManager 驱动管理器</p>
+<p>–根据参数</p>
+<p>url连接数据库地址；</p>
+<p>username数据库用户名;</p>
+<p>password数据库用户对应的密码</p>
+<p>DriverManager.getConnection(url,u,p);</p>
+        
+          <a class="article-more-a" href="/2019/07/29/MySQL基础三/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/29/MySQL基础三/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MySQL基础二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/29/MySQL基础二/">Mysql基础（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/29/MySQL基础二/" class="archive-article-date">
+  	<time datetime="2019-07-29T10:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一.基本的条件判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">= &gt; &lt; &gt;= &lt;= != 或or 且and 非!</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//1.需求：查询前8条数据</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span>  product <span class="keyword">where</span>/pro_id &gt;= <span class="number">8</span>;//,1~8     </span><br><span class="line">//2.分页操作，每页8条数据，startIndex(0)<span class="comment">--pageSize(每页显示的商品数量)     </span></span><br><span class="line"><span class="keyword">select</span>  * <span class="keyword">from</span>  <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">8</span>;      </span><br><span class="line">//3.查询商品的分类编号，去重复</span><br><span class="line">//Distinct 字段名</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> classify_id <span class="keyword">from</span> product;</span><br><span class="line">//4.需求:查询所有货品的编号，名称，和各进货50个的成本价，定义别名</span><br><span class="line"><span class="keyword">select</span> pro_id 编号,pro_name 名称,(selling_price-profit)*<span class="number">50</span> 购买<span class="number">50</span>个的成本价 <span class="keyword">from</span> product;</span><br><span class="line">//5.需求:查询商品的名字和零售价。</span><br><span class="line">    // 格式：xxx商品的零售价为：xxx</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'每售出一个'</span>,pro_name,<span class="string">'产品，赚取：'</span>,profit,<span class="string">'元'</span>) 结果 <span class="keyword">from</span> product;</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">//6.between  x1   and   x2 操作符：表示某一个范围区间</span><br><span class="line">//not  between  x1   and   x2</span><br><span class="line">//常使用在数字类型数据的范围上，对于字符类型数据和日期类型数据也可用。</span><br><span class="line">//需求: 选择id，货品名称，售价在80-100之间的货品</span><br><span class="line"><span class="keyword">select</span> pro_id,pro_name <span class="keyword">from</span> product <span class="keyword">where</span> selling_price <span class="keyword">between</span> <span class="number">80</span> <span class="keyword">and</span> <span class="number">100</span>;</span><br><span class="line">//7.时间差。date_sub(出库时间  , interval  数字  单位)=入库时间</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">interval 1 hour;       -1小时</span></span><br><span class="line"><span class="comment">interval 1 minute;    - 1分钟</span></span><br><span class="line"><span class="comment">interval 1 second;    -1秒</span></span><br><span class="line"><span class="comment">interval 1 week;		-1周</span></span><br><span class="line"><span class="comment">interval 1 month;		-1月</span></span><br><span class="line"><span class="comment">interval 1 quarter;		-1季</span></span><br><span class="line"><span class="comment">interval 1 year;	-1年</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">//需求：选择商品编号，库存数量，出库时间和入库时间相差一天的商品。</span><br><span class="line"><span class="keyword">select</span> pro_id,pro_count <span class="keyword">from</span> stock <span class="keyword">where</span> <span class="keyword">date_sub</span>(last_out_time,<span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">day</span>)=last_in_time;</span><br></pre></td></tr></table></figure>
+
+<p>8.数据类型</p>
+<p><strong>日期时间类型</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">大小（字节）</th>
+<th align="center">格式</th>
+<th align="center">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">DATA</td>
+<td align="center">3</td>
+<td align="center">YYYY-MM-DD</td>
+<td align="center">日期值</td>
+</tr>
+<tr>
+<td align="center">TIME</td>
+<td align="center">3</td>
+<td align="center">HH:MM:SS</td>
+<td align="center">时间值或持续时间</td>
+</tr>
+<tr>
+<td align="center">YEAR</td>
+<td align="center">1</td>
+<td align="center">YYYY</td>
+<td align="center">年份值</td>
+</tr>
+<tr>
+<td align="center">DATETIME</td>
+<td align="center">8</td>
+<td align="center">YYYY-MM-DD HH:MM:SS</td>
+<td align="center">混合时间和日期值</td>
+</tr>
+<tr>
+<td align="center">TIMESTAMP</td>
+<td align="center">4</td>
+<td align="center">YYYYYMMDDHHMMSS</td>
+<td align="center">混合日期和时间值，时间戳</td>
+</tr>
+</tbody></table>
+<p><strong>数值类型</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">大小</th>
+<th align="center">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int/integer</td>
+<td align="center">4字节</td>
+<td align="center">大整数</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">4字节</td>
+<td align="center">单精度浮点数值</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">8字节</td>
+<td align="center">双精度浮点数值</td>
+</tr>
+</tbody></table>
+<p><strong>字符串类型</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">char</td>
+<td align="center">定长字符串</td>
+</tr>
+<tr>
+<td align="center">varchar</td>
+<td align="center">变长字符串</td>
+</tr>
+<tr>
+<td align="center">text</td>
+<td align="center">长文本数据</td>
+</tr>
+<tr>
+<td align="center">blob</td>
+<td align="center">二进制形式的长文本数据</td>
+</tr>
+<tr>
+<td align="center">longtext</td>
+<td align="center">极大文本数据</td>
+</tr>
+</tbody></table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">9.表连接</span><br><span class="line">join语句/inner join/left join/right join/union all/cross join笛卡尔积/</span><br><span class="line"></span><br><span class="line">//10.in操作符，判断列的值是否在指定的集合中</span><br><span class="line">//需求:选择id，货品名称，分类编号为2，3的所有货品</span><br><span class="line"><span class="keyword">select</span> classify_id,classify_name <span class="keyword">from</span> classify <span class="keyword">where</span> classify_id <span class="keyword">in</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">//需求:选择id，货品名称，分类编号不为2，3的所有货品</span><br><span class="line"><span class="keyword">select</span> classify_id,classify_name <span class="keyword">from</span> classify <span class="keyword">where</span> classify_id <span class="keyword">not</span> <span class="keyword">in</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">in()/not in()</span><br><span class="line"></span><br><span class="line">//11.like操作符：执行通配查询，查询条件可包含文字、字符或数字：</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">%:通配符：可表示零或多个字符。0~n</span></span><br><span class="line"><span class="comment">_:通配符：可表示一个字符。  1</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">//需求: 查询id，货品名称，货品名称包含罗技M</span><br><span class="line"><span class="keyword">Select</span>  pro_id,pro_name <span class="keyword">from</span>  product  <span class="keyword">where</span> pro_name <span class="keyword">like</span><span class="string">'%罗技M%'</span>;</span><br><span class="line">//需求: 查询id，货品名称，货品名称以罗技M开头</span><br><span class="line">Pro_name like ‘罗技M%’;</span><br><span class="line">//需求: 查询id，货品名称，货品名称以X技M开头</span><br><span class="line">Pro_name  like ‘_技M%’</span><br><span class="line"></span><br><span class="line">//12.order  by 结果排序</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">asc : 升序，缺省。</span></span><br><span class="line"><span class="comment">desc: 降序。</span></span><br><span class="line"><span class="comment">order  by  子句出现在select语句的最后</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">//需求: 选择id，货品名称，分类编号,售价先按分类编号排序,再按零售价排序</span><br><span class="line"> <span class="keyword">select</span> pro_id,pro_name,classify_id,selling_price <span class="keyword">from</span> product <span class="keyword">order</span> <span class="keyword">by</span> classify_id <span class="keyword">desc</span>,selling_price <span class="keyword">asc</span>;</span><br><span class="line">//需求:查询分类为2并按照售价排序(加上别名)</span><br><span class="line">注意：别名不能使用引号括起来,否则不能排序。</span><br><span class="line"></span><br><span class="line">//13.分页查询:  limit  beginIndex,pageSize</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1）假分页(逻辑分页): 把数据全部查询出来,存在于内存中,翻页的时候,直接从内存中获取。</span></span><br><span class="line"><span class="comment">2）真分页(物理分页): 每次翻页都去数据库中去查询数据。</span></span><br><span class="line"><span class="comment">3）假分页: 翻页比较快,但是第一次查询很慢,若数据过大,可能导致内存溢出。</span></span><br><span class="line"><span class="comment">4）真分页: 翻页比较慢,若数据过大,不会导致内存溢出。</span></span><br><span class="line"><span class="comment">每页2条记录</span></span><br><span class="line"><span class="comment">第一页     limit   0,2</span></span><br><span class="line"><span class="comment">第二页     limit   2,2</span></span><br><span class="line"><span class="comment">第三页     limit   4,2</span></span><br><span class="line"><span class="comment">startIndex = (page -1) * pageSize</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">//14.聚集函数：统计函数，作用于一组数据，并对一组数据返回一个值。</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1）COUNT：统计结果记录数  </span></span><br><span class="line"><span class="comment">2）MAX：  统计计算最大值</span></span><br><span class="line"><span class="comment">3）MIN：  统计计算最小值</span></span><br><span class="line"><span class="comment">4）SUM：  统计计算求和</span></span><br><span class="line"><span class="comment">5）AVG：  统计计算平均值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">//15.分组查询</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">使用GROUP BY 子句将表中的数据分成若干组，再对分组之后的数据做统计计算，一般使用聚集函数才使用GROUP BY。</span></span><br><span class="line"><span class="comment">SELECT &lt;selectList&gt; , 聚集函数</span></span><br><span class="line"><span class="comment">FROM table_name  </span></span><br><span class="line"><span class="comment">WHERE 条件</span></span><br><span class="line"><span class="comment">GROUP BY 列名---体现重复性</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">//需求:查询每个商品分类编号和每个商品分类各自的平均零售价 </span><br><span class="line"><span class="keyword">select</span> classify_id 分类编号,<span class="keyword">avg</span>(selling_price) 平均价格 <span class="keyword">from</span> product  <span class="keyword">group</span> <span class="keyword">by</span> classify_id;</span><br><span class="line">//需求:查询每个商品分类编号和每个商品分类各自的商品总数。</span><br><span class="line"><span class="keyword">select</span> classify_id 分类编号,<span class="keyword">count</span>(pro_id) 商品数量 <span class="keyword">from</span> product <span class="keyword">group</span> <span class="keyword">by</span> classify_id;</span><br><span class="line"></span><br><span class="line">16.having条件</span><br><span class="line"><span class="comment">/*与 where 语法类似，区别，where 搜索条件在进行分组操作之前应用；而having 搜索条件在进行分组操作之后应用，并且having 可以包含聚合函数*/</span></span><br><span class="line"><span class="comment">#需求:查询零售价总和大于150的商品分类编号以及总零售价和。</span></span><br><span class="line"><span class="comment">/*Where  不能加聚合函数  group by--having*/</span></span><br><span class="line"><span class="keyword">select</span> classify_id 分类编号,<span class="keyword">sum</span>(selling_price)  总和  <span class="keyword">from</span> product <span class="keyword">group</span> <span class="keyword">by</span> classify_id <span class="keyword">having</span> <span class="keyword">sum</span>(selling_price) &gt; <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/29/MySQL基础二/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MySQL基础一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/29/MySQL基础一/">Mysql基础（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/29/MySQL基础一/" class="archive-article-date">
+  	<time datetime="2019-07-29T02:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一.<strong>MySql</strong>基础SQL应用：关系型数据库，菲关系型数据库。关系型数据库：是指采用了<strong><em>关系模型</em></strong>来组织数据的数据库，其以<strong><em>行和列</em></strong>的形式存储数据，以便用户理解，关系数据库这一系列的行和列被称为表，一组表组成了数据库。<br>Oracle、DB2、PostgreSQL、Microsoft SQL Server、Microsoft Access、MySQL</p>
+<p>非关系型数据库：又被称为NoSQL（Not Only SQL )，对NoSQL 最普遍的定义是“非关联型的”，强调Key-Value 存储</p>
+<p>NoSql、Cloudant、MongoDB、redis、HBase</p>
+<p>二.<strong>SQL语句分类</strong></p>
+<p>1）<strong>数据查询语言DQL</strong>    Query**<br> 数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE<br> SELECT &lt;字段名表&gt;FROM &lt;表或视图名&gt;WHERE &lt;查询条件&gt;</p>
+<p> 2）<strong>数据操纵语言DML</strong>    Manipulation**<br> 数据操纵语言DML主要有三种形式：<br> 1) -插入：INSERT<br> 2) -更新：UPDATE<br> 3) -删除：DELETE</p>
+        
+          <a class="article-more-a" href="/2019/07/29/MySQL基础一/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/29/MySQL基础一/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-线程的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -292,10 +692,6 @@
 <p><strong>知识点1：Collection接口</strong></p>
 <p>Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set</p>
 <p><strong>知识点2：Collection重要方法</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;?extends E&gt; c)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> <span class="comment">//确保此Collection包含指定的所有元素，则返回true</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Iterator &lt;E&gt; <span class="title">iterator</span><span class="params">()</span> <span class="comment">//返回在此Collection的元素上进行的迭代器</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></span><br><span class="line"><span class="function">&lt;T&gt; T[] <span class="title">toArray</span><span class="params">(T[] a)</span> <span class="comment">//返回包含此Collection中所有元素的数组；返回数组的运行时类型与指定数组的运行时类型相同</span></span></span><br></pre></td></tr></table></figure>
-
-<p><strong>知识点3：Collection的遍历</strong></p>
-<p>集合的通用遍历方法有以下几种：<br>    使用增强型for(forEach循环)遍历<br>    使用迭代器遍历</p>
         
           <a class="article-more-a" href="/2019/07/25/java中的集合/#more">more >></a>
         
@@ -610,18 +1006,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>###多态，抽象类，接口总结</p>
-<ol start="2">
-<li><ol>
+<ol>
 <li><p>​    多态</p>
 <ol>
-<li>多种形态—-满足3个条件：继承，方法重写，向上造型</li>
-</ol>
-<p>方法重写规则：1.继承关系；2.方法名相同；3.形参列表相同；4.访问修饰符：子类》=父类；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：子类《=父类</p>
-<p>方法重载：1.同一个类；2.方法名相同；3形参列表不同（个数，类型，顺序的不同）</p>
+<li><p>多种形态—-满足3个条件：继承，方法重写，向上造型</p>
+<p>方法重写规则：1.发生继承关系中；2.方法名相同；3.形参列表相同；4.访问修饰符：一致，[子类&gt;=父类(public&gt;private)]；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：一致，[子类&lt;=父类(子类的异常任然是父类异常的子类或者异常一致)]。</p>
+<p>方法重载：1.同一个类；2.方法名相同；3形参列表不同（个数，类型，顺序的不同）；对访问修饰符合返回值没有要求。</p>
 </li>
 </ol>
 </li>
-<li><p>抽象类<br>特点：可以包含描述行为的接口；（抽象方法：指声明行为，不说明具体操作）<br>与普通Java类的区别：不能实例化，通过子类去实例化；可以有构造方法（规范子类构造方法）<br>有抽象方法的类，一定是抽象类；抽象类可以包含抽象方法，也可以包含具体实现的方法</p>
+<li><p>抽象类<br>特点：可以包含描述行为的接口；（抽象方法：指声明行为，不说明具体操作）<br>与普通Java类的区别：不能直接实例化，通过子类去实例化；可以有构造方法（规范子类构造方法）<br>有抽象方法的类，一定是抽象类；抽象类可以包含抽象方法，也可以包含具体实现的方法</p>
 </li>
 <li><p>final最终： 修饰变量—–常量    修饰方法——不能被重写    修饰类—–不能被继承</p>
 </li>
@@ -629,7 +1023,7 @@
 </li>
 <li><p>static final一起使用：静态常量， 声明+初始化</p>
 </li>
-<li><p>接口<br>特点：没有构造方法，也不能被实例化，成员属性是 public static final 修饰  成员方法是 public abstract 修饰。</p>
+<li><p>接口<br>特点：没有构造方法，也不能被直接实例化，成员属性是 public static final 修饰  成员方法是 public abstract 修饰。</p>
 </li>
 </ol>
 <p>​    </p>
@@ -943,103 +1337,10 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/21/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/21/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-21T00:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">hello word</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hello-word//" class="article-tag-list-link color1">hello word</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/21/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1133,7 +1434,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1149,11 +1462,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
               </li>
              
               <li class="article-tag-list-item">

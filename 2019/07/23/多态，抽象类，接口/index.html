@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>多态，抽象类，接口 | NSG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###多态，抽象类，接口总结   ​    多态  多种形态—-满足3个条件：继承，方法重写，向上造型  方法重写规则：1.继承关系；2.方法名相同；3.形参列表相同；4.访问修饰符：子类》=父类；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：子类《=父类 方法重载：1.同一个类；2.方法名相同；3形参列表不同（个数，类型，顺序的不同）    抽象类特点：可以包含描述行为的接口；（">
+  <meta name="description" content="###多态，抽象类，接口总结  ​    多态  多种形态—-满足3个条件：继承，方法重写，向上造型 方法重写规则：1.发生继承关系中；2.方法名相同；3.形参列表相同；4.访问修饰符：一致，[子类&amp;gt;=父类(public&amp;gt;private)]；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：一致，[子类&amp;lt;=父类(子类的异常任然是父类异常的子类或者异常一致)]。 方法重">
 <meta name="keywords" content="多态，抽象类，接口">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多态，抽象类，接口">
 <meta property="og:url" content="http://yoursite.com/2019/07/23/多态，抽象类，接口/index.html">
 <meta property="og:site_name" content="NSG">
-<meta property="og:description" content="###多态，抽象类，接口总结   ​    多态  多种形态—-满足3个条件：继承，方法重写，向上造型  方法重写规则：1.继承关系；2.方法名相同；3.形参列表相同；4.访问修饰符：子类》=父类；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：子类《=父类 方法重载：1.同一个类；2.方法名相同；3形参列表不同（个数，类型，顺序的不同）    抽象类特点：可以包含描述行为的接口；（">
+<meta property="og:description" content="###多态，抽象类，接口总结  ​    多态  多种形态—-满足3个条件：继承，方法重写，向上造型 方法重写规则：1.发生继承关系中；2.方法名相同；3.形参列表相同；4.访问修饰符：一致，[子类&amp;gt;=父类(public&amp;gt;private)]；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：一致，[子类&amp;lt;=父类(子类的异常任然是父类异常的子类或者异常一致)]。 方法重">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-27T12:46:51.505Z">
+<meta property="og:updated_time" content="2019-07-27T13:06:03.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多态，抽象类，接口">
-<meta name="twitter:description" content="###多态，抽象类，接口总结   ​    多态  多种形态—-满足3个条件：继承，方法重写，向上造型  方法重写规则：1.继承关系；2.方法名相同；3.形参列表相同；4.访问修饰符：子类》=父类；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：子类《=父类 方法重载：1.同一个类；2.方法名相同；3形参列表不同（个数，类型，顺序的不同）    抽象类特点：可以包含描述行为的接口；（">
+<meta name="twitter:description" content="###多态，抽象类，接口总结  ​    多态  多种形态—-满足3个条件：继承，方法重写，向上造型 方法重写规则：1.发生继承关系中；2.方法名相同；3.形参列表相同；4.访问修饰符：一致，[子类&amp;gt;=父类(public&amp;gt;private)]；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：一致，[子类&amp;lt;=父类(子类的异常任然是父类异常的子类或者异常一致)]。 方法重">
   
     <link rel="alternative" href="/atom.xml" title="NSG" type="application/atom+xml">
   
@@ -180,18 +180,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>###多态，抽象类，接口总结</p>
-<ol start="2">
-<li><ol>
+<ol>
 <li><p>​    多态</p>
 <ol>
-<li>多种形态—-满足3个条件：继承，方法重写，向上造型</li>
-</ol>
-<p>方法重写规则：1.继承关系；2.方法名相同；3.形参列表相同；4.访问修饰符：子类》=父类；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：子类《=父类</p>
-<p>方法重载：1.同一个类；2.方法名相同；3形参列表不同（个数，类型，顺序的不同）</p>
+<li><p>多种形态—-满足3个条件：继承，方法重写，向上造型</p>
+<p>方法重写规则：1.发生继承关系中；2.方法名相同；3.形参列表相同；4.访问修饰符：一致，[子类&gt;=父类(public&gt;private)]；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：一致，[子类&lt;=父类(子类的异常任然是父类异常的子类或者异常一致)]。</p>
+<p>方法重载：1.同一个类；2.方法名相同；3形参列表不同（个数，类型，顺序的不同）；对访问修饰符合返回值没有要求。</p>
 </li>
 </ol>
 </li>
-<li><p>抽象类<br>特点：可以包含描述行为的接口；（抽象方法：指声明行为，不说明具体操作）<br>与普通Java类的区别：不能实例化，通过子类去实例化；可以有构造方法（规范子类构造方法）<br>有抽象方法的类，一定是抽象类；抽象类可以包含抽象方法，也可以包含具体实现的方法</p>
+<li><p>抽象类<br>特点：可以包含描述行为的接口；（抽象方法：指声明行为，不说明具体操作）<br>与普通Java类的区别：不能直接实例化，通过子类去实例化；可以有构造方法（规范子类构造方法）<br>有抽象方法的类，一定是抽象类；抽象类可以包含抽象方法，也可以包含具体实现的方法</p>
 </li>
 <li><p>final最终： 修饰变量—–常量    修饰方法——不能被重写    修饰类—–不能被继承</p>
 </li>
@@ -199,7 +197,7 @@
 </li>
 <li><p>static final一起使用：静态常量， 声明+初始化</p>
 </li>
-<li><p>接口<br>特点：没有构造方法，也不能被实例化，成员属性是 public static final 修饰  成员方法是 public abstract 修饰。</p>
+<li><p>接口<br>特点：没有构造方法，也不能被直接实例化，成员属性是 public static final 修饰  成员方法是 public abstract 修饰。</p>
 </li>
 </ol>
 <p>​    </p>
@@ -471,7 +469,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,11 +497,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
               </li>
              
               <li class="article-tag-list-item">

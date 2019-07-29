@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java中的集合 | NSG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##集合  知识点1：Collection接口 Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set 知识点2：Collection重要方法 123456789boolean add(E e)boolean addAll(Collection&amp;lt;?extends E&amp;gt; c)void clear(">
+  <meta name="description" content="##集合  知识点1：Collection接口 Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set 知识点2：Collection重要方法">
 <meta name="keywords" content="集合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java中的集合">
 <meta property="og:url" content="http://yoursite.com/2019/07/25/java中的集合/index.html">
 <meta property="og:site_name" content="NSG">
-<meta property="og:description" content="##集合  知识点1：Collection接口 Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set 知识点2：Collection重要方法 123456789boolean add(E e)boolean addAll(Collection&amp;lt;?extends E&amp;gt; c)void clear(">
+<meta property="og:description" content="##集合  知识点1：Collection接口 Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set 知识点2：Collection重要方法">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564058923843.png?raw=true">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564103422107.png?raw=true">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564230232233.png?raw=true">
-<meta property="og:updated_time" content="2019-07-27T12:25:53.563Z">
+<meta property="og:updated_time" content="2019-07-27T12:58:33.513Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java中的集合">
-<meta name="twitter:description" content="##集合  知识点1：Collection接口 Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set 知识点2：Collection重要方法 123456789boolean add(E e)boolean addAll(Collection&amp;lt;?extends E&amp;gt; c)void clear(">
+<meta name="twitter:description" content="##集合  知识点1：Collection接口 Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set 知识点2：Collection重要方法">
 <meta name="twitter:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564058923843.png?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="NSG" type="application/atom+xml">
@@ -188,11 +188,13 @@
 <p><strong>知识点1：Collection接口</strong></p>
 <p>Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set</p>
 <p><strong>知识点2：Collection重要方法</strong></p>
+<a id="more"></a>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;?extends E&gt; c)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> <span class="comment">//确保此Collection包含指定的所有元素，则返回true</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Iterator &lt;E&gt; <span class="title">iterator</span><span class="params">()</span> <span class="comment">//返回在此Collection的元素上进行的迭代器</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></span><br><span class="line"><span class="function">&lt;T&gt; T[] <span class="title">toArray</span><span class="params">(T[] a)</span> <span class="comment">//返回包含此Collection中所有元素的数组；返回数组的运行时类型与指定数组的运行时类型相同</span></span></span><br></pre></td></tr></table></figure>
 
 <p><strong>知识点3：Collection的遍历</strong></p>
 <p>集合的通用遍历方法有以下几种：<br>    使用增强型for(forEach循环)遍历<br>    使用迭代器遍历</p>
-<a id="more"></a>
+<!--more-->
 
 <p><strong>知识点4：List</strong></p>
 <p>List接口为Collection子接口。List所代表的是有序的Collection。可以对列表中每个元素的位置精确控制，同时根据元素的索引访问元素，并检索列表中的元素，由于这些特性，List在Collection的基础上扩展了一些重要方法</p>
@@ -522,7 +524,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,11 +552,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
               </li>
              
               <li class="article-tag-list-item">
