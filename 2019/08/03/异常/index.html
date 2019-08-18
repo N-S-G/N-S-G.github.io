@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201908/1565054649357.png?raw=true">
 <meta property="og:image" content="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201908/1565057561629.png?raw=true">
-<meta property="og:updated_time" content="2019-08-08T15:18:28.927Z">
+<meta property="og:updated_time" content="2019-08-18T15:50:05.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="异常">
 <meta name="twitter:description" content="一.异常：在Java语言中，将程序执行中发生的不正常情况称之为“异常”。（开发过程中的语法错误和逻辑错误不是异常） 1.java程序在执行过程中所发生的异常事件可分为两类： 1）.Error：java虚拟机无法解决的严重的问题，如：JVM系统内部错误，资源耗尽等严重 情况。一般不编写针对性的代码进行处理。 2）.Exception：其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代">
@@ -217,17 +217,10 @@
 <p>创建好的异常对象不抛出对程序没有任何影响，和创建一个普通对象一样</p>
 <p>5、如果一个方法内抛出异常，该异常对象会被抛给调用者方法中处理。如果异常没有在调用者方法中处理，它继续被抛给这个调用方法的上层方法。这个过程将一直继续下去，直到异常被处理。这一过程称为捕获(catch)异常。</p>
 <p>–只能处理Exception，而对Error无能为力</p>
-<p>四.异常语法结构</p>
-<p>​              try{</p>
-<p>​                 //可能出现异常的代码</p>
-<p>​              }catch(异常类 e1){  </p>
-<p>​                 //捕捉并处理异常信息—–e1</p>
-<p>​              }catch(异常类 e2){  </p>
-<p>​                 //捕捉并处理异常信息</p>
-<p>​              }finally{</p>
-<p>​                 //无论异常是否发生都会执行</p>
-<p>​              }</p>
-<p>1、try…catch 结构可以只写try…catch还可以写try…finally,但是try、catch、finally都不能单独存在使用</p>
+<p>四.异常语法结构          </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">       //可能出现异常的代码</span><br><span class="line">     &#125;catch(异常类 e1)&#123;  </span><br><span class="line">        //捕捉并处理异常信息-----e1</span><br><span class="line">     &#125;catch(异常类 e2)&#123;  </span><br><span class="line">        //捕捉并处理异常信息</span><br><span class="line">     &#125;finally&#123;</span><br><span class="line">        //无论异常是否发生都会执行</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>1、trycatch 结构可以只写try…catch还可以写try…finally,但是try、catch、finally都不能单独存在使用</p>
 <p>2、捕获异常的有关信息：</p>
 <p>与其它对象一样，可以访问一个异常对象的成员变量或调用它的方法。</p>
 <p>getMessage()   获取异常信息，返回字符串</p>
@@ -525,6 +518,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring-jdbc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MyBatis框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
@@ -542,6 +543,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">StringBuilder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,18 +570,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">同步与异步</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
@@ -589,7 +582,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">同步与异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SSM框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步请求</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,6 +635,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jsp内置对象</a>
               </li>
              
               <li class="article-tag-list-item">
