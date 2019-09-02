@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="NSG">
 <meta property="og:description" content="jsp中一共预先定义了9个这样的对象，分别是：request，response，session，application，out，pagecontext，config，page，exception；不需要预先声明就可以在脚本代码和表达式总随意使用。    名称 描述 类型 作用域    request 请求对象 javax.servlet.ServletRequest Request   respo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-18T15:22:58.650Z">
+<meta property="og:updated_time" content="2019-08-14T14:39:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jsp九大内置对象的详解">
 <meta name="twitter:description" content="jsp中一共预先定义了9个这样的对象，分别是：request，response，session，application，out，pagecontext，config，page，exception；不需要预先声明就可以在脚本代码和表达式总随意使用。    名称 描述 类型 作用域    request 请求对象 javax.servlet.ServletRequest Request   respo">
@@ -255,7 +255,6 @@
 <p>  1.02根据表单域的名字获得表单数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] likes = request.getParameterValues(&quot;like&quot;);</span><br></pre></td></tr></table></figure>
 
-<a id="more"></a>
 <p>  1.03 getParameterNames() 获取客户端提交的所有参数的名字。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Enumeration <span class="keyword">enum</span> = request.getParameterNames();</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">enum</span>.hasMoreElements())&#123;</span><br><span class="line">	String s=(String)<span class="keyword">enum</span>.nextElement();</span><br><span class="line">	out.println(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1047,18 +1046,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SSM框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
@@ -1068,6 +1055,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
               </li>
              
               <li class="article-tag-list-item">

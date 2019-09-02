@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="NSG">
 <meta property="og:description" content="一.应用场景 ​    注册页面登录名和密码的实时验证，部分页面的局部刷新 二.实现【AJAX 异步的JavaScript和xml】 ​    1.官方介绍 1.浏览器必须支持XMLRequest请求，可以向服务器发送请求 ​    open(method,url,async)规定类型，URL，是否异步 ​        method 请求方式 get或post ​        url接收地址，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-18T15:35:40.876Z">
+<meta property="og:updated_time" content="2019-09-02T09:07:37.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用jquery实现ajax异步请求">
 <meta name="twitter:description" content="一.应用场景 ​    注册页面登录名和密码的实时验证，部分页面的局部刷新 二.实现【AJAX 异步的JavaScript和xml】 ​    1.官方介绍 1.浏览器必须支持XMLRequest请求，可以向服务器发送请求 ​    open(method,url,async)规定类型，URL，是否异步 ​        method 请求方式 get或post ​        url接收地址，">
@@ -201,8 +201,6 @@
 <p>1).在jsp页面的<head><meta name="generator" content="Hexo 3.9.0">部分引入js文件，例如：jquery-3.4.1.min.js</head></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--本地引用--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"lib/jquery-3.4.1.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--引入在线--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-3.4.1.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">补充介绍：</span></span><br><span class="line"><span class="comment">(1)--jquery-3.4.1.min.js简单的说就是js封装好的框架，引入其他js文件之前也不一定就得引入jQuery-jquery-3.4.1.min.js文件，</span></span><br><span class="line"><span class="comment">****如果你引用的其他js文件没用到jQuery-jquery-3.4.1.min.js这里面的功能，是不需要引用的，</span></span><br><span class="line"><span class="comment">****如果某些js是基于jQuery-jquery-3.4.1.min.js框架开发的，那必须引用!</span></span><br><span class="line"><span class="comment">(2)“jquery.min.js”和“jquery.js”的区别是</span></span><br><span class="line"><span class="comment">1、jquery.min.js：是由完整版的jQuery库经过压缩得来，压缩后功能与未压缩的完全一样，只是将其中的空白字符、注释、空行等与逻辑无关的内容删除，并进行一些优化。</span></span><br><span class="line"><span class="comment">2、jquery.js：是完整的未压缩的jQuery库，文件比较大。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
 
-<a id="more"></a>
-
 <p>2）.异步请求可以添加在<body>的任何位置</body></p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form <span class="class"><span class="keyword">class</span></span>=<span class="string">"form form-horizontal"</span> action=<span class="string">"home.jsp"</span> method=<span class="string">"post"</span> onsubmit=<span class="string">"return check()"</span>&gt;</span><br><span class="line">    &lt;input id=<span class="string">"adminname"</span>  type=<span class="string">"text"</span> placeholder=<span class="string">"账户"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"input-text size-L"</span> onblur=<span class="string">"checkName()"</span>&gt;</span><br><span class="line">    &lt;input id=<span class="string">"adminpwd"</span>  type=<span class="string">"password"</span> placeholder=<span class="string">"密码"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"input-text size-L"</span> onblur=<span class="string">"checkPwd()"</span>&gt;</span><br><span class="line">    &lt;input name=<span class="string">""</span> type=<span class="string">"submit"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-success radius size-L"</span> value=<span class="string">"&amp;nbsp;登&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;录&amp;nbsp;"</span>&gt;</span><br><span class="line">          &lt;input name=<span class="string">""</span> type=<span class="string">"reset"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn btn-default radius size-L"</span> value=<span class="string">"&amp;nbsp;取&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;消&amp;nbsp;"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
 
@@ -269,15 +267,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/jsp//" class="article-tag-list-link color4">jsp</a>
+        			<a href="/categories/ajax//" class="article-tag-list-link color5">ajax</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/jsp/ajax//" class="article-tag-list-link color5">ajax</a>
+        			<a href="/categories/ajax/jap//" class="article-tag-list-link color4">jap</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/jsp/ajax/异步请求//" class="article-tag-list-link color5">异步请求</a>
+        			<a href="/categories/ajax/jap/异步请求//" class="article-tag-list-link color5">异步请求</a>
         		</li>
       		
 		</ul>
@@ -559,18 +557,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SSM框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
@@ -580,6 +566,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
               </li>
              
               <li class="article-tag-list-item">

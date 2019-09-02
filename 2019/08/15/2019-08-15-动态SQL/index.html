@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="NSG">
 <meta property="og:description" content="Mybatis详解——-动态SQL 1. if语句如果 #{username} 为空，那么查询结果也是空，如何解决这个问题呢？使用 if 来判断 123456789&amp;lt;select id=&quot;selectUserByUsernameAndSex&quot; resultType=&quot;user&quot; parameterType=&quot;com.ys.po.User&quot;&amp;gt;    select * from user">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-18T15:43:27.409Z">
+<meta property="og:updated_time" content="2019-08-15T13:51:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态SQL">
 <meta name="twitter:description" content="Mybatis详解——-动态SQL 1. if语句如果 #{username} 为空，那么查询结果也是空，如何解决这个问题呢？使用 if 来判断 123456789&amp;lt;select id=&quot;selectUserByUsernameAndSex&quot; resultType=&quot;user&quot; parameterType=&quot;com.ys.po.User&quot;&amp;gt;    select * from user">
@@ -191,8 +191,6 @@
 <h2 id="2-if-where语句"><a href="#2-if-where语句" class="headerlink" title="2. if+where语句"></a>2. if+where语句</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectUserByUsernameAndSex"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"com.ys.po.User"</span>&gt;</span></span><br><span class="line">    select * from user </span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username != null"</span>&gt;</span></span><br><span class="line">           username=#&#123;username&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username != null"</span>&gt;</span></span><br><span class="line">           and sex=#&#123;sex&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>这个“where”标签会知道如果它包含的标签中有返回值的话，它就插入一个‘where’。此外，如果标签返回的内容是以AND 或OR 开头的，则它会剔除掉。</p>
-<a id="more"></a>
-
 <h2 id="3-if-set-语句"><a href="#3-if-set-语句" class="headerlink" title="3. if+set 语句"></a>3. if+set 语句</h2><p>同理，含有 set 关键词，我们怎么处理呢？</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 根据 id 更新 user 表的数据 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUserById"</span> <span class="attr">parameterType</span>=<span class="string">"com.ys.po.User"</span>&gt;</span></span><br><span class="line">    update user u</span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username != null and username != ''"</span>&gt;</span></span><br><span class="line">                u.username = #&#123;username&#125;,</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"sex != null and sex != ''"</span>&gt;</span></span><br><span class="line">                u.sex = #&#123;sex&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">          where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -207,7 +205,7 @@
 <p>如果 username 为空，那么查询语句为 select * from user where sex=?</p>
 <p>##5. trim 语句</p>
 <p>trim标记是一个格式化的标记，可以完成set或者是where标记的功能</p>
-<p>①、用 trim 改写上面第二点的 if+where 语句</p>
+<p>　　①、用 trim 改写上面第二点的 if+where 语句</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectUserByUsernameAndSex"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"com.ys.po.User"</span>&gt;</span></span><br><span class="line">        select * from user </span><br><span class="line">        <span class="comment">&lt;!-- &lt;where&gt;</span></span><br><span class="line"><span class="comment">            &lt;if test="username != null"&gt;</span></span><br><span class="line"><span class="comment">               username=#&#123;username&#125;</span></span><br><span class="line"><span class="comment">            &lt;/if&gt;</span></span><br><span class="line"><span class="comment">            &lt;if test="username != null"&gt;</span></span><br><span class="line"><span class="comment">               and sex=#&#123;sex&#125;</span></span><br><span class="line"><span class="comment">            &lt;/if&gt;</span></span><br><span class="line"><span class="comment">        &lt;/where&gt;  --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"where"</span> <span class="attr">prefixOverrides</span>=<span class="string">"and | or"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username != null"</span>&gt;</span></span><br><span class="line">               and username=#&#123;username&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"sex != null"</span>&gt;</span></span><br><span class="line">               and sex=#&#123;sex&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>​        prefix：前缀　　　　　　</p>
@@ -372,8 +370,8 @@
     </a>
   
   
-    <a href="/2019/08/15/2019-09-15-MyBatis框架的学习/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MyBatis框架的学习</div>
+    <a href="/2019/08/14/2019-08-14-SpringMVC-学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringMVC 学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -575,18 +573,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SSM框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
@@ -596,6 +582,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
               </li>
              
               <li class="article-tag-list-item">

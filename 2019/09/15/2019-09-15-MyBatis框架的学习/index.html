@@ -12,11 +12,11 @@
 <meta name="keywords" content="MyBatis框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MyBatis框架的学习">
-<meta property="og:url" content="http://yoursite.com/2019/08/15/2019-09-15-MyBatis框架的学习/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/09/15/2019-09-15-MyBatis框架的学习/index.html">
 <meta property="og:site_name" content="NSG">
 <meta property="og:description" content="回顾： Spring JDBC 模块 1、声明SQL 2、处理结果集 ​         JdbcTemplate对象  操作数据库的方法   ​        查询：query(String sql,RowMapper)   不需要遍历结果集 ，方法的返回值是List//获取第一对象-àget(0) 一 . 创建一个mybatis项目 1、导入mybatis-3.4.5.jar、mysql-co">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-18T15:42:27.281Z">
+<meta property="og:updated_time" content="2019-08-15T13:07:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis框架的学习">
 <meta name="twitter:description" content="回顾： Spring JDBC 模块 1、声明SQL 2、处理结果集 ​         JdbcTemplate对象  操作数据库的方法   ​        查询：query(String sql,RowMapper)   不需要遍历结果集 ，方法的返回值是List//获取第一对象-àget(0) 一 . 创建一个mybatis项目 1、导入mybatis-3.4.5.jar、mysql-co">
@@ -171,8 +171,8 @@
   
 
         
-        <a href="/2019/08/15/2019-09-15-MyBatis框架的学习/" class="archive-article-date">
-  	<time datetime="2019-08-15T08:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
+        <a href="/2019/09/15/2019-09-15-MyBatis框架的学习/" class="archive-article-date">
+  	<time datetime="2019-09-15T08:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
 </a>
         
       </header>
@@ -196,9 +196,7 @@
 <p>5、测试1~6步骤</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//1)加载配置文件</span></span><br><span class="line"></span><br><span class="line">       String res = <span class="string">"mybatis-config.xml"</span>;</span><br><span class="line"></span><br><span class="line">    **<span class="keyword">try</span>** &#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//2)获取res对应的配置文件的输入流对象</span></span><br><span class="line"></span><br><span class="line">       InputStream is = Resources.*getResourceAsStream*(res);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//3)获取SqlsessionFactory对象</span></span><br><span class="line"></span><br><span class="line">       SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//4)获取Sqlsession</span></span><br><span class="line"></span><br><span class="line">       SqlSession ss = factory.openSession();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//5)获取接口对象</span></span><br><span class="line"></span><br><span class="line">       UserMapper um = ss.getMapper(UserMapper.**<span class="class"><span class="keyword">class</span>**)</span>;<span class="comment">//类名.class</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//6)执行UserMapper接口中的方法</span></span><br><span class="line"></span><br><span class="line">       User u = um.getUserByUid(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">       System.**out**.println(u);</span><br><span class="line"></span><br><span class="line">    &#125; **<span class="keyword">catch</span>** (IOException e) &#123;</span><br><span class="line"></span><br><span class="line">       e.printStackTrace();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<a id="more"></a>
-
-<p>二.    Mybatis**</p>
+<p><strong>二.    Mybatis</strong></p>
 <p>1.简单介绍–mybatis框架—&gt;对应dao层-à在dao层创建<strong>“xxxMapper接口”</strong>+<strong>“xxxMspper.xml”</strong></p>
 <p>​    1）.<strong>xxxMapper</strong>接口—》该文件主要定义一些查询方法的接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserMapper文件源码</span></span><br><span class="line"><span class="keyword">package</span> com.mybatis.dao;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.MapKey;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Param;</span><br><span class="line"><span class="keyword">import</span> com.mybatis.beans.Userss;</span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">	<span class="comment">//根据编号查询用户</span></span><br><span class="line">	<span class="comment">//1）注解@Param</span></span><br><span class="line">	<span class="function">Userss <span class="title">getUserByUid</span><span class="params">(@Param(<span class="string">"uid"</span>)</span><span class="keyword">int</span> id)</span>;</span><br><span class="line">	<span class="comment">//查询所有用户</span></span><br><span class="line">	<span class="function">List&lt;Userss&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">//2）查询为多条记录，并返回值为map时 要用@Mapkey(主键)</span></span><br><span class="line">	<span class="meta">@MapKey</span>(<span class="string">"uname"</span>)</span><br><span class="line">	<span class="function">Map&lt;String, Userss&gt;  <span class="title">selectAll</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -330,7 +328,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/15/2019-09-15-MyBatis框架的学习/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/15/2019-09-15-MyBatis框架的学习/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -344,18 +342,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/15/2019-08-15-动态SQL/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          动态SQL
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/14/2019-08-14-SpringMVC-学习/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SpringMVC 学习</div>
+    <a href="/2019/08/16/2019-08-16-SSM-框架整合/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SSM 框架整合</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -557,18 +546,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SSM框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
@@ -578,6 +555,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异常</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
               </li>
              
               <li class="article-tag-list-item">
