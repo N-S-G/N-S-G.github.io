@@ -160,138 +160,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-2019-09-15-MyBatis框架的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/15/2019-09-15-MyBatis框架的学习/">MyBatis框架的学习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/15/2019-09-15-MyBatis框架的学习/" class="archive-article-date">
-  	<time datetime="2019-09-15T08:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>回顾：</strong></p>
-<p>Spring JDBC 模块</p>
-<p>1、声明SQL</p>
-<p>2、处理结果集</p>
-<p>​         JdbcTemplate对象  操作数据库的方法  </p>
-<p>​        查询：query(String sql,RowMapper<user>)   不需要遍历结果集 ，方法的返回值是List<user>//获取第一对象-àget(0)</user></user></p>
-<p><strong>一 . 创建一个mybatis项目</strong></p>
-<p>1、导入mybatis-3.4.5.jar、mysql-connector.jar</p>
-<p>2、创建mybatis配置文件，一般在类路径下，默认名字mybatis.config.xml</p>
-<p>位置为：src/conf   任务为：数据源  driver  url   username  password</p>
-<p>映射文件</p>
-<p>3、定义接口UserMapper，声明具体的方法</p>
-<p>4、创建UserMapper.xml文件，关联接口</p>
-<p>声明sql语句，并指定对应接口中的方法，id   resultType</p>
-<p>5、测试1~6步骤</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//1)加载配置文件</span></span><br><span class="line"></span><br><span class="line">       String res = <span class="string">"mybatis-config.xml"</span>;</span><br><span class="line"></span><br><span class="line">    **<span class="keyword">try</span>** &#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//2)获取res对应的配置文件的输入流对象</span></span><br><span class="line"></span><br><span class="line">       InputStream is = Resources.*getResourceAsStream*(res);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//3)获取SqlsessionFactory对象</span></span><br><span class="line"></span><br><span class="line">       SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//4)获取Sqlsession</span></span><br><span class="line"></span><br><span class="line">       SqlSession ss = factory.openSession();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//5)获取接口对象</span></span><br><span class="line"></span><br><span class="line">       UserMapper um = ss.getMapper(UserMapper.**<span class="class"><span class="keyword">class</span>**)</span>;<span class="comment">//类名.class</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//6)执行UserMapper接口中的方法</span></span><br><span class="line"></span><br><span class="line">       User u = um.getUserByUid(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">       System.**out**.println(u);</span><br><span class="line"></span><br><span class="line">    &#125; **<span class="keyword">catch</span>** (IOException e) &#123;</span><br><span class="line"></span><br><span class="line">       e.printStackTrace();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>二.    Mybatis</strong></p>
-<p>1.简单介绍–mybatis框架—&gt;对应dao层-à在dao层创建<strong>“xxxMapper接口”</strong>+<strong>“xxxMspper.xml”</strong></p>
-<p>​    1）.<strong>xxxMapper</strong>接口—》该文件主要定义一些查询方法的接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserMapper文件源码</span></span><br><span class="line"><span class="keyword">package</span> com.mybatis.dao;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.MapKey;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Param;</span><br><span class="line"><span class="keyword">import</span> com.mybatis.beans.Userss;</span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">	<span class="comment">//根据编号查询用户</span></span><br><span class="line">	<span class="comment">//1）注解@Param</span></span><br><span class="line">	<span class="function">Userss <span class="title">getUserByUid</span><span class="params">(@Param(<span class="string">"uid"</span>)</span><span class="keyword">int</span> id)</span>;</span><br><span class="line">	<span class="comment">//查询所有用户</span></span><br><span class="line">	<span class="function">List&lt;Userss&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">//2）查询为多条记录，并返回值为map时 要用@Mapkey(主键)</span></span><br><span class="line">	<span class="meta">@MapKey</span>(<span class="string">"uname"</span>)</span><br><span class="line">	<span class="function">Map&lt;String, Userss&gt;  <span class="title">selectAll</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>​        2）.xxxMspper.xml—》该文件的整体是一个“mapper”标签包裹着，<strong><em>需要注意两点</em></strong>：</p>
-<ul>
-<li>mapper的标签必须有<strong><em>namespace</em></strong>属性，它的值为对应mapper接口的“包名.接口名”；</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.mybatis.dao.UserMapper"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>每个查询语句的<strong><em>id</em></strong>表示的是接口中方法的名称，<strong><em>resultType</em></strong>表示的是接口中方法的返回值（包名.基础类名）</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByUid"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>  UserMapper.xml文件源码</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//UserMapper.xml文件源码</span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 声明sql语句 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- namespace：对应的是一个接口UserMapper，关联xml文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.mybatis.dao.UserMapper"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- id表示的是接口中方法的名称，resultType表示的是接口中方法的返回值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByUid"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- #&#123;uid&#125; 获取方法形参，uid表示通过@Param绑定的id --&gt;</span></span><br><span class="line">    select * from userss where uid = #&#123;uid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	select * from userss</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectAll"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	select * from userss</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>测试类test.java —-&gt;主要有6步</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mybatis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Map.Entry;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mybatis.beans.Userss;</span><br><span class="line"><span class="keyword">import</span> com.mybatis.dao.UserMapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="comment">//1)获取对应的配置文件，配置文件放在了src/conf目录下</span></span><br><span class="line">		String res = <span class="string">"mybatis-config.xml"</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//2)获取res对应的配置文件的输入流对象</span></span><br><span class="line">			InputStream is = Resources.getResourceAsStream(res);</span><br><span class="line">			<span class="comment">//3)获取SqlsessionFactory对象</span></span><br><span class="line">			SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line">			<span class="comment">//4)获取Sqlsession</span></span><br><span class="line">			SqlSession ss = factory.openSession(<span class="keyword">true</span>);</span><br><span class="line">			<span class="comment">//openSession(true)&lt;==&gt;ss使用完后执行ss.commit();</span></span><br><span class="line">			<span class="comment">//都是起到执行完SQL自动提交的作用</span></span><br><span class="line">			<span class="comment">//5)获取接口对象</span></span><br><span class="line">			UserMapper um = ss.getMapper(UserMapper.class);<span class="comment">//接口名.class</span></span><br><span class="line">			<span class="comment">//6)执行UserMapper接口中的方法</span></span><br><span class="line">			</span><br><span class="line">				<span class="comment">//----------通过id查询getUserByUid(1)---------------查找</span></span><br><span class="line">			Userss u = um.getUserByUid(<span class="number">1</span>);</span><br><span class="line">			</span><br><span class="line">				<span class="comment">//--------------查询所有用户</span></span><br><span class="line">			List&lt;Userss&gt; userss=um.findAll();</span><br><span class="line">			<span class="keyword">for</span>(Userss userss2 :userss)</span><br><span class="line">				System.out.println(userss2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//				//map 查询所有用户</span></span><br><span class="line">			Map&lt;String, Userss&gt; alls=um.selectAll();</span><br><span class="line"><span class="comment">//			//遍历map集合  1.keySet() 2.entrySet</span></span><br><span class="line">			Set&lt;String&gt; keys=alls.keySet();</span><br><span class="line"><span class="comment">//			//遍历set集合</span></span><br><span class="line">			<span class="keyword">for</span>(String key :keys) &#123;</span><br><span class="line">				Userss userss = alls.get(key);</span><br><span class="line">				System.out.println(key+<span class="string">"--"</span>+userss);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>mybatis-config.xml 主要内容为：1）.配置数据源.    2.）关联每一个XXXMapper.xml 文件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置数据源：mysql连接的参数 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span><span class="comment">&lt;!-- 事务管理器 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span> <span class="comment">&lt;!-- 资源管理 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://127.0.0.1:3306/taobaoshopping?useUnicode=true&amp;amp;characterEncoding=utf8&amp;amp;serverTimezone=GMT%2B8&amp;amp;useSSL=false"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 映射：xml文件，包括声明sql语句  --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- JavaBean名字+Mapper.xml  UserMapper.xml   dao包下--&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 资源文件的应用使用路径的方式 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/mybatis/dao/UserMapper.xml"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mapper resource="com/mybatis/dao/ProductMapper.xml"/&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong><em>小总结：</em></strong></p>
-<p>​    <strong><em>mybatis配置文件会关联XXXMapper.xml文件，XXXMapper.xml又会关联XXXMapper接口文件。</em></strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MyBatis框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/SSM框架//" class="article-tag-list-link color1">SSM框架</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/SSM框架/MyBatis框架//" class="article-tag-list-link color5">MyBatis框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/15/2019-09-15-MyBatis框架的学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-2019-08-16-SSM-框架整合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -517,6 +385,138 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/15/2019-08-15-动态SQL/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-08-15-MyBatis框架的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/15/2019-08-15-MyBatis框架的学习/">MyBatis框架的学习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/15/2019-08-15-MyBatis框架的学习/" class="archive-article-date">
+  	<time datetime="2019-08-15T08:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>回顾：</strong></p>
+<p>Spring JDBC 模块</p>
+<p>1、声明SQL</p>
+<p>2、处理结果集</p>
+<p>​         JdbcTemplate对象  操作数据库的方法  </p>
+<p>​        查询：query(String sql,RowMapper<user>)   不需要遍历结果集 ，方法的返回值是List<user>//获取第一对象-àget(0)</user></user></p>
+<p><strong>一 . 创建一个mybatis项目</strong></p>
+<p>1、导入mybatis-3.4.5.jar、mysql-connector.jar</p>
+<p>2、创建mybatis配置文件，一般在类路径下，默认名字mybatis.config.xml</p>
+<p>位置为：src/conf   任务为：数据源  driver  url   username  password</p>
+<p>映射文件</p>
+<p>3、定义接口UserMapper，声明具体的方法</p>
+<p>4、创建UserMapper.xml文件，关联接口</p>
+<p>声明sql语句，并指定对应接口中的方法，id   resultType</p>
+<p>5、测试1~6步骤</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//1)加载配置文件</span></span><br><span class="line"></span><br><span class="line">       String res = <span class="string">"mybatis-config.xml"</span>;</span><br><span class="line"></span><br><span class="line">    **<span class="keyword">try</span>** &#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//2)获取res对应的配置文件的输入流对象</span></span><br><span class="line"></span><br><span class="line">       InputStream is = Resources.*getResourceAsStream*(res);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//3)获取SqlsessionFactory对象</span></span><br><span class="line"></span><br><span class="line">       SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//4)获取Sqlsession</span></span><br><span class="line"></span><br><span class="line">       SqlSession ss = factory.openSession();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//5)获取接口对象</span></span><br><span class="line"></span><br><span class="line">       UserMapper um = ss.getMapper(UserMapper.**<span class="class"><span class="keyword">class</span>**)</span>;<span class="comment">//类名.class</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//6)执行UserMapper接口中的方法</span></span><br><span class="line"></span><br><span class="line">       User u = um.getUserByUid(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">       System.**out**.println(u);</span><br><span class="line"></span><br><span class="line">    &#125; **<span class="keyword">catch</span>** (IOException e) &#123;</span><br><span class="line"></span><br><span class="line">       e.printStackTrace();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>二.    Mybatis</strong></p>
+<p>1.简单介绍–mybatis框架—&gt;对应dao层-à在dao层创建<strong>“xxxMapper接口”</strong>+<strong>“xxxMspper.xml”</strong></p>
+<p>​    1）.<strong>xxxMapper</strong>接口—》该文件主要定义一些查询方法的接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserMapper文件源码</span></span><br><span class="line"><span class="keyword">package</span> com.mybatis.dao;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.MapKey;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Param;</span><br><span class="line"><span class="keyword">import</span> com.mybatis.beans.Userss;</span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">	<span class="comment">//根据编号查询用户</span></span><br><span class="line">	<span class="comment">//1）注解@Param</span></span><br><span class="line">	<span class="function">Userss <span class="title">getUserByUid</span><span class="params">(@Param(<span class="string">"uid"</span>)</span><span class="keyword">int</span> id)</span>;</span><br><span class="line">	<span class="comment">//查询所有用户</span></span><br><span class="line">	<span class="function">List&lt;Userss&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">//2）查询为多条记录，并返回值为map时 要用@Mapkey(主键)</span></span><br><span class="line">	<span class="meta">@MapKey</span>(<span class="string">"uname"</span>)</span><br><span class="line">	<span class="function">Map&lt;String, Userss&gt;  <span class="title">selectAll</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        2）.xxxMspper.xml—》该文件的整体是一个“mapper”标签包裹着，<strong><em>需要注意两点</em></strong>：</p>
+<ul>
+<li>mapper的标签必须有<strong><em>namespace</em></strong>属性，它的值为对应mapper接口的“包名.接口名”；</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.mybatis.dao.UserMapper"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>每个查询语句的<strong><em>id</em></strong>表示的是接口中方法的名称，<strong><em>resultType</em></strong>表示的是接口中方法的返回值（包名.基础类名）</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByUid"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>  UserMapper.xml文件源码</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//UserMapper.xml文件源码</span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 声明sql语句 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- namespace：对应的是一个接口UserMapper，关联xml文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.mybatis.dao.UserMapper"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- id表示的是接口中方法的名称，resultType表示的是接口中方法的返回值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByUid"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- #&#123;uid&#125; 获取方法形参，uid表示通过@Param绑定的id --&gt;</span></span><br><span class="line">    select * from userss where uid = #&#123;uid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	select * from userss</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectAll"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	select * from userss</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试类test.java —-&gt;主要有6步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mybatis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Map.Entry;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mybatis.beans.Userss;</span><br><span class="line"><span class="keyword">import</span> com.mybatis.dao.UserMapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="comment">//1)获取对应的配置文件，配置文件放在了src/conf目录下</span></span><br><span class="line">		String res = <span class="string">"mybatis-config.xml"</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//2)获取res对应的配置文件的输入流对象</span></span><br><span class="line">			InputStream is = Resources.getResourceAsStream(res);</span><br><span class="line">			<span class="comment">//3)获取SqlsessionFactory对象</span></span><br><span class="line">			SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line">			<span class="comment">//4)获取Sqlsession</span></span><br><span class="line">			SqlSession ss = factory.openSession(<span class="keyword">true</span>);</span><br><span class="line">			<span class="comment">//openSession(true)&lt;==&gt;ss使用完后执行ss.commit();</span></span><br><span class="line">			<span class="comment">//都是起到执行完SQL自动提交的作用</span></span><br><span class="line">			<span class="comment">//5)获取接口对象</span></span><br><span class="line">			UserMapper um = ss.getMapper(UserMapper.class);<span class="comment">//接口名.class</span></span><br><span class="line">			<span class="comment">//6)执行UserMapper接口中的方法</span></span><br><span class="line">			</span><br><span class="line">				<span class="comment">//----------通过id查询getUserByUid(1)---------------查找</span></span><br><span class="line">			Userss u = um.getUserByUid(<span class="number">1</span>);</span><br><span class="line">			</span><br><span class="line">				<span class="comment">//--------------查询所有用户</span></span><br><span class="line">			List&lt;Userss&gt; userss=um.findAll();</span><br><span class="line">			<span class="keyword">for</span>(Userss userss2 :userss)</span><br><span class="line">				System.out.println(userss2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//				//map 查询所有用户</span></span><br><span class="line">			Map&lt;String, Userss&gt; alls=um.selectAll();</span><br><span class="line"><span class="comment">//			//遍历map集合  1.keySet() 2.entrySet</span></span><br><span class="line">			Set&lt;String&gt; keys=alls.keySet();</span><br><span class="line"><span class="comment">//			//遍历set集合</span></span><br><span class="line">			<span class="keyword">for</span>(String key :keys) &#123;</span><br><span class="line">				Userss userss = alls.get(key);</span><br><span class="line">				System.out.println(key+<span class="string">"--"</span>+userss);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mybatis-config.xml 主要内容为：1）.配置数据源.    2.）关联每一个XXXMapper.xml 文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置数据源：mysql连接的参数 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span><span class="comment">&lt;!-- 事务管理器 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span> <span class="comment">&lt;!-- 资源管理 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://127.0.0.1:3306/taobaoshopping?useUnicode=true&amp;amp;characterEncoding=utf8&amp;amp;serverTimezone=GMT%2B8&amp;amp;useSSL=false"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 映射：xml文件，包括声明sql语句  --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- JavaBean名字+Mapper.xml  UserMapper.xml   dao包下--&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 资源文件的应用使用路径的方式 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/mybatis/dao/UserMapper.xml"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mapper resource="com/mybatis/dao/ProductMapper.xml"/&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>小总结：</em></strong></p>
+<p>​    <strong><em>mybatis配置文件会关联XXXMapper.xml文件，XXXMapper.xml又会关联XXXMapper接口文件。</em></strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MyBatis框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SSM框架//" class="article-tag-list-link color1">SSM框架</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SSM框架/MyBatis框架//" class="article-tag-list-link color5">MyBatis框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/15/2019-08-15-MyBatis框架的学习/">展开全文 >></a>
         </p>
       
 
@@ -2147,6 +2147,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
@@ -2156,14 +2164,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">异常</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">动态SQL</a>
               </li>
              
               <li class="article-tag-list-item">
