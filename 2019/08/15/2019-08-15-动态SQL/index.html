@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="NSG">
 <meta property="og:description" content="Mybatis详解——-动态SQL 1. if语句如果 #{username} 为空，那么查询结果也是空，如何解决这个问题呢？使用 if 来判断 123456789&amp;lt;select id=&quot;selectUserByUsernameAndSex&quot; resultType=&quot;user&quot; parameterType=&quot;com.ys.po.User&quot;&amp;gt;    select * from user">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T13:51:40.000Z">
+<meta property="og:updated_time" content="2019-09-08T15:11:53.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态SQL">
 <meta name="twitter:description" content="Mybatis详解——-动态SQL 1. if语句如果 #{username} 为空，那么查询结果也是空，如何解决这个问题呢？使用 if 来判断 123456789&amp;lt;select id=&quot;selectUserByUsernameAndSex&quot; resultType=&quot;user&quot; parameterType=&quot;com.ys.po.User&quot;&amp;gt;    select * from user">
@@ -203,8 +203,7 @@
 <p>如果 id 不为空，那么查询语句为：select * from user where  id=?</p>
 <p>如果 id 为空，那么看username 是否为空，如果不为空，那么语句为 select * from user where  username=?;</p>
 <p>如果 username 为空，那么查询语句为 select * from user where sex=?</p>
-<p>##5. trim 语句</p>
-<p>trim标记是一个格式化的标记，可以完成set或者是where标记的功能</p>
+<h2 id="5-trim-语句"><a href="#5-trim-语句" class="headerlink" title="5. trim 语句"></a>5. trim 语句</h2><p>trim标记是一个格式化的标记，可以完成set或者是where标记的功能</p>
 <p>　　①、用 trim 改写上面第二点的 if+where 语句</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectUserByUsernameAndSex"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"com.ys.po.User"</span>&gt;</span></span><br><span class="line">        select * from user </span><br><span class="line">        <span class="comment">&lt;!-- &lt;where&gt;</span></span><br><span class="line"><span class="comment">            &lt;if test="username != null"&gt;</span></span><br><span class="line"><span class="comment">               username=#&#123;username&#125;</span></span><br><span class="line"><span class="comment">            &lt;/if&gt;</span></span><br><span class="line"><span class="comment">            &lt;if test="username != null"&gt;</span></span><br><span class="line"><span class="comment">               and sex=#&#123;sex&#125;</span></span><br><span class="line"><span class="comment">            &lt;/if&gt;</span></span><br><span class="line"><span class="comment">        &lt;/where&gt;  --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">"where"</span> <span class="attr">prefixOverrides</span>=<span class="string">"and | or"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username != null"</span>&gt;</span></span><br><span class="line">               and username=#&#123;username&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"sex != null"</span>&gt;</span></span><br><span class="line">               and sex=#&#123;sex&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -505,6 +504,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sort</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ssm参数注释</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">参数注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
@@ -594,6 +613,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">图片服务器</a>
               </li>
              
               <li class="article-tag-list-item">

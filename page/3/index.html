@@ -160,6 +160,667 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-线程的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/26/线程的学习/">java中的线程学习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/26/线程的学习/" class="archive-article-date">
+  	<time datetime="2019-07-26T12:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>线程的学习<br>一.线程</p>
+<p><strong>知识点1：程序，进程，线程的基本概念和关系</strong></p>
+<p><strong>程序：</strong>是计算机<strong><em>指令的集合</em></strong>.程序是<strong><em>一组静态的指令集</em></strong>，不占用系统运行资源,不能被系统调度，也不能作为独立运行的单位,它<strong><em>以文件的形式存储在磁盘上</em></strong>。</p>
+<p><strong>进程：</strong>是一个程序在其自身的地址空间中的<strong><em>一次执行活动</em></strong>。比如，打开一个记事本，就是调用了一个进程。<strong><em>进程是资源申请、调度和独立运行的单位</em></strong>，因此，它使用系统中的运行资源；而程序不能申请系统资源，一个程序可以对应多个进程，例如QQ多开</p>
+<p><strong>线程：</strong>被称为轻量进程，并且大多数现代操作系统把<strong><em>线程作为时序调度的基本单元</em></strong>，而不是进程，在没有明确协调的情况下，线程相互间同时或异步地执行。因为线程共亨其所属进程的内存地址空间</p>
+<table>
+<thead>
+<tr>
+<th align="center">系统运行程序的基本单位</th>
+<th align="center">进程</th>
+<th align="center">有独立的内存空间和系统资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>进程中执行运算的最小单位</strong></td>
+<td align="center"><strong>线程</strong></td>
+<td align="center"><strong>处理器分配给线程，真正运行在处理器上的是线程</strong></td>
+</tr>
+</tbody></table>
+<p><strong>知识点2：为什么要进行多线程编程</strong></p>
+<p>1、可以更好的实现并行<br>2、恰当地使用线程时，可以降低开发和维护的开销，并且能够提高复杂应用的性能。<br>3、CPU在线程之间开关时的开销远比进程要少得多。因开关线程都在同一地址空间内，只需要修改线程控制表或队列，不涉及地址空间和其他工作。<br>4、创建和撤销线程的开销较之进程要少。</p>
+        
+          <a class="article-more-a" href="/2019/07/26/线程的学习/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线程//" class="article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/26/线程的学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-java中的集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/25/java中的集合/">java中的集合</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/25/java中的集合/" class="archive-article-date">
+  	<time datetime="2019-07-25T07:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##集合</p>
+<p><img src="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1564058923843.png?raw=true" alt="java集合树形图"></p>
+<p><strong>知识点1：Collection接口</strong></p>
+<p>Collection接口是最基本的集合接口，它不提供直接的实现，JavaSDK提供的类都是继承自Collection的“子接口”如List和Set</p>
+<p><strong>知识点2：Collection重要方法</strong></p>
+        
+          <a class="article-more-a" href="/2019/07/25/java中的集合/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Set</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">List</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Map</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java/集合//" class="article-tag-list-link color3">集合</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/25/java中的集合/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-String，StringBuffer和StringBuilder类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/24/String，StringBuffer和StringBuilder类/">String，StringBuffer和StringBuilder类</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/24/String，StringBuffer和StringBuilder类/" class="archive-article-date">
+  	<time datetime="2019-07-24T12:29:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###String，StringBuffer和StringBuilder类<br>当对字符串进行修改的时候，需要使用到StringBuffer和StringBuilder类，能够多次修改，并且不产生新的未使用对象</p>
+<p>StringBuilder类在Java5中被提出，具有线程不安全（不能同步访问），执行速度快的特点</p>
+<p>StringBuffer类具有线程安全，但执行速度慢的特点</p>
+<p>小结：（1）如果要操作少量的数据用 String；</p>
+<p>（2）多线程操作字符串缓冲区下操作大量数据 StringBuffer；</p>
+<p>（3）<strong>单线程操作字符串缓冲区下操作大量数据 StringBuilder</strong>。</p>
+<p>（4）String s=null;     √</p>
+<p>​          String s=”abc”   √</p>
+<p>​          StringBuffer s = null;    ×     //结果警告：Null pointer access: The variable result can only be null at this location</p>
+<p>​          StringBuffer s = new StringBuffer();     √   //StringBuffer对象是一个空的对象</p>
+<p>​          StringBuffer s = new StringBuffer(“abc”);     √     //创建带有内容的StringBuffer对象,对象的内容就是字符串” </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">StringBuffer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">StringBuilder</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/String//" class="article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/String/StringBuffer//" class="article-tag-list-link color3">StringBuffer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/String/StringBuffer/StringBuilder//" class="article-tag-list-link color4">StringBuilder</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/24/String，StringBuffer和StringBuilder类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-线程安全与线程不安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/线程安全与线程不安全/">线程的安全与不安全</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/23/线程安全与线程不安全/" class="archive-article-date">
+  	<time datetime="2019-07-23T08:41:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一.    <strong>线程安全与线程不安全</strong></p>
+<p>1、线程安全：</p>
+<p>指多个线程在执行同一段代码的时候采用加锁机制，使每次的执行结果和单线程执行的结果都是一样的，不存在执行程序时出现意外结果。</p>
+<p>2、线程不安全：</p>
+<p>是指不提供加锁机制保护，有可能出现多个线程先后更改数据造成所得到的数据是脏数据。</p>
+<p>举例说明：假设售票系统有1000张票，A和B同时来买票，如果是线程不安全，那么可能售票系统可能出现1000-1去同时执行的情况，最终结果是A和B都买完后剩下999张票，而不是998张。</p>
+<p><img src="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201907/1563845059896.png?raw=true" alt="1563845059896"></p>
+<p><strong>扩展资料</strong></p>
+<p>1、引起线程安全问题的原因：</p>
+<p>线程安全问题都是由全局变量及静态变量引起的。</p>
+        
+          <a class="article-more-a" href="/2019/07/23/线程安全与线程不安全/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">同步与异步</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线程//" class="article-tag-list-link color3">线程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线程/同步与异步//" class="article-tag-list-link color1">同步与异步</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/23/线程安全与线程不安全/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-多态，抽象类，接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/多态，抽象类，接口/">多态，抽象类，接口</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/23/多态，抽象类，接口/" class="archive-article-date">
+  	<time datetime="2019-07-23T07:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###多态，抽象类，接口总结</p>
+<ol>
+<li><p>​    多态</p>
+<ol>
+<li><p>多种形态—-满足3个条件：继承，方法重写，向上造型</p>
+<p>方法重写规则：1.发生继承关系中；2.方法名相同；3.形参列表相同；4.访问修饰符：一致，[子类&gt;=父类(public&gt;private)]；5.方法返回值跟父类一致（或者是父类返回值的子类）；6异常 ：一致，[子类&lt;=父类(子类的异常任然是父类异常的子类或者异常一致)]。</p>
+<p>方法重载：1.同一个类；2.方法名相同；3形参列表不同（个数，类型，顺序的不同）；对访问修饰符合返回值没有要求。</p>
+</li>
+</ol>
+</li>
+<li><p>抽象类<br>特点：可以包含描述行为的接口；（抽象方法：指声明行为，不说明具体操作）<br>与普通Java类的区别：不能直接实例化，通过子类去实例化；可以有构造方法（规范子类构造方法）<br>有抽象方法的类，一定是抽象类；抽象类可以包含抽象方法，也可以包含具体实现的方法</p>
+</li>
+<li><p>final最终： 修饰变量—–常量    修饰方法——不能被重写    修饰类—–不能被继承</p>
+</li>
+<li><p>static静态：类加载时执行一次    可以修饰变量和方法</p>
+</li>
+<li><p>static final一起使用：静态常量， 声明+初始化</p>
+</li>
+<li><p>接口<br>特点：没有构造方法，也不能被直接实例化，成员属性是 public static final 修饰  成员方法是 public abstract 修饰。</p>
+</li>
+</ol>
+<p>​    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">多态</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">抽象类</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">接口</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/多态//" class="article-tag-list-link color3">多态</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/多态/抽象类//" class="article-tag-list-link color4">抽象类</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/多态/抽象类/接口//" class="article-tag-list-link color3">接口</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/23/多态，抽象类，接口/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-javascript与jquery的复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/22/javascript与jquery的复习/">javascript与jquery的复习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/22/javascript与jquery的复习/" class="archive-article-date">
+  	<time datetime="2019-07-22T07:25:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##javascript与jquery的复习##<br><strong>script对象与jquery对象的相互转化</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var js = document.getElementsByTagName(&quot;div&quot;)[0];</span><br><span class="line">js.innerHTML= &quot;JS&quot;;</span><br><span class="line">//js对象转化为jq对象</span><br><span class="line">$(js).text(&quot;js对象转化为jq对象&quot;);</span><br><span class="line">//jq对象转化为js对象</span><br><span class="line">$(js)[0].innerHTML = &quot;jq对象转化为js对象&quot;</span><br></pre></td></tr></table></figure>
+
+<p>jquery选择器</p>
+<ol start="0">
+<li><p>######简单区别</p>
+<ul>
+<li>js———-onclike   innerText    value<br>   jq———clike()    text()    val()</li>
+</ul>
+</li>
+<li><p>######选择器</p>
+<ul>
+<li>$(“#id”);//id选择器</li>
+<li>$(“.class”);//类选择器</li>
+<li>$(“p,a”)//分组选择器</li>
+<li>$(“div#id/div.class”)</li>
+<li>$(“*”) </li>
+</ul>
+</li>
+<li><p>######选择后，添加样式  使用css</p>
+        
+          <a class="article-more-a" href="/2019/07/22/javascript与jquery的复习/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jquery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript//" class="article-tag-list-link color1">javascript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/javascript/jquery//" class="article-tag-list-link color2">jquery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/22/javascript与jquery的复习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-搭建hexo框架的博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -478,6 +1139,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">sort</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ssm参数注释</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">参数注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ssm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
@@ -567,6 +1248,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">图片服务器</a>
               </li>
              
               <li class="article-tag-list-item">
