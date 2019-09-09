@@ -160,6 +160,270 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-08-15-MyBatis框架的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/15/2019-08-15-MyBatis框架的学习/">MyBatis框架的学习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/15/2019-08-15-MyBatis框架的学习/" class="archive-article-date">
+  	<time datetime="2019-08-15T08:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>回顾：</strong></p>
+<p>Spring JDBC 模块</p>
+<p>1、声明SQL</p>
+<p>2、处理结果集</p>
+<p>​         JdbcTemplate对象  操作数据库的方法  </p>
+<p>​        查询：query(String sql,RowMapper<user>)   不需要遍历结果集 ，方法的返回值是List<user>//获取第一对象-àget(0)</user></user></p>
+<p><strong>一 . 创建一个mybatis项目</strong></p>
+<p>1、导入mybatis-3.4.5.jar、mysql-connector.jar</p>
+<p>2、创建mybatis配置文件，一般在类路径下，默认名字mybatis.config.xml</p>
+<p>位置为：src/conf   任务为：数据源  driver  url   username  password</p>
+<p>映射文件</p>
+<p>3、定义接口UserMapper，声明具体的方法</p>
+<p>4、创建UserMapper.xml文件，关联接口</p>
+<p>声明sql语句，并指定对应接口中的方法，id   resultType</p>
+<p>5、测试1~6步骤</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//1)加载配置文件</span></span><br><span class="line"></span><br><span class="line">       String res = <span class="string">"mybatis-config.xml"</span>;</span><br><span class="line"></span><br><span class="line">    **<span class="keyword">try</span>** &#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//2)获取res对应的配置文件的输入流对象</span></span><br><span class="line"></span><br><span class="line">       InputStream is = Resources.*getResourceAsStream*(res);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//3)获取SqlsessionFactory对象</span></span><br><span class="line"></span><br><span class="line">       SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//4)获取Sqlsession</span></span><br><span class="line"></span><br><span class="line">       SqlSession ss = factory.openSession();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//5)获取接口对象</span></span><br><span class="line"></span><br><span class="line">       UserMapper um = ss.getMapper(UserMapper.**<span class="class"><span class="keyword">class</span>**)</span>;<span class="comment">//类名.class</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//6)执行UserMapper接口中的方法</span></span><br><span class="line"></span><br><span class="line">       User u = um.getUserByUid(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">       System.**out**.println(u);</span><br><span class="line"></span><br><span class="line">    &#125; **<span class="keyword">catch</span>** (IOException e) &#123;</span><br><span class="line"></span><br><span class="line">       e.printStackTrace();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>二.    Mybatis</strong></p>
+<p>1.简单介绍–mybatis框架—&gt;对应dao层-à在dao层创建<strong>“xxxMapper接口”</strong>+<strong>“xxxMspper.xml”</strong></p>
+<p>​    1）.<strong>xxxMapper</strong>接口—》该文件主要定义一些查询方法的接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//UserMapper文件源码</span></span><br><span class="line"><span class="keyword">package</span> com.mybatis.dao;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.MapKey;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Param;</span><br><span class="line"><span class="keyword">import</span> com.mybatis.beans.Userss;</span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">	<span class="comment">//根据编号查询用户</span></span><br><span class="line">	<span class="comment">//1）注解@Param</span></span><br><span class="line">	<span class="function">Userss <span class="title">getUserByUid</span><span class="params">(@Param(<span class="string">"uid"</span>)</span><span class="keyword">int</span> id)</span>;</span><br><span class="line">	<span class="comment">//查询所有用户</span></span><br><span class="line">	<span class="function">List&lt;Userss&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">//2）查询为多条记录，并返回值为map时 要用@Mapkey(主键)</span></span><br><span class="line">	<span class="meta">@MapKey</span>(<span class="string">"uname"</span>)</span><br><span class="line">	<span class="function">Map&lt;String, Userss&gt;  <span class="title">selectAll</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        2）.xxxMspper.xml—》该文件的整体是一个“mapper”标签包裹着，<strong><em>需要注意两点</em></strong>：</p>
+<ul>
+<li>mapper的标签必须有<strong><em>namespace</em></strong>属性，它的值为对应mapper接口的“包名.接口名”；</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.mybatis.dao.UserMapper"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>每个查询语句的<strong><em>id</em></strong>表示的是接口中方法的名称，<strong><em>resultType</em></strong>表示的是接口中方法的返回值（包名.基础类名）</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByUid"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>  UserMapper.xml文件源码</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//UserMapper.xml文件源码</span><br><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 声明sql语句 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- namespace：对应的是一个接口UserMapper，关联xml文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.mybatis.dao.UserMapper"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- id表示的是接口中方法的名称，resultType表示的是接口中方法的返回值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByUid"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- #&#123;uid&#125; 获取方法形参，uid表示通过@Param绑定的id --&gt;</span></span><br><span class="line">    select * from userss where uid = #&#123;uid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	select * from userss</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectAll"</span> <span class="attr">resultType</span>=<span class="string">"com.mybatis.beans.Userss"</span>&gt;</span></span><br><span class="line">    	select * from userss</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试类test.java —-&gt;主要有6步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mybatis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Map.Entry;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mybatis.beans.Userss;</span><br><span class="line"><span class="keyword">import</span> com.mybatis.dao.UserMapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="comment">//1)获取对应的配置文件，配置文件放在了src/conf目录下</span></span><br><span class="line">		String res = <span class="string">"mybatis-config.xml"</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//2)获取res对应的配置文件的输入流对象</span></span><br><span class="line">			InputStream is = Resources.getResourceAsStream(res);</span><br><span class="line">			<span class="comment">//3)获取SqlsessionFactory对象</span></span><br><span class="line">			SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line">			<span class="comment">//4)获取Sqlsession</span></span><br><span class="line">			SqlSession ss = factory.openSession(<span class="keyword">true</span>);</span><br><span class="line">			<span class="comment">//openSession(true)&lt;==&gt;ss使用完后执行ss.commit();</span></span><br><span class="line">			<span class="comment">//都是起到执行完SQL自动提交的作用</span></span><br><span class="line">			<span class="comment">//5)获取接口对象</span></span><br><span class="line">			UserMapper um = ss.getMapper(UserMapper.class);<span class="comment">//接口名.class</span></span><br><span class="line">			<span class="comment">//6)执行UserMapper接口中的方法</span></span><br><span class="line">			</span><br><span class="line">				<span class="comment">//----------通过id查询getUserByUid(1)---------------查找</span></span><br><span class="line">			Userss u = um.getUserByUid(<span class="number">1</span>);</span><br><span class="line">			</span><br><span class="line">				<span class="comment">//--------------查询所有用户</span></span><br><span class="line">			List&lt;Userss&gt; userss=um.findAll();</span><br><span class="line">			<span class="keyword">for</span>(Userss userss2 :userss)</span><br><span class="line">				System.out.println(userss2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//				//map 查询所有用户</span></span><br><span class="line">			Map&lt;String, Userss&gt; alls=um.selectAll();</span><br><span class="line"><span class="comment">//			//遍历map集合  1.keySet() 2.entrySet</span></span><br><span class="line">			Set&lt;String&gt; keys=alls.keySet();</span><br><span class="line"><span class="comment">//			//遍历set集合</span></span><br><span class="line">			<span class="keyword">for</span>(String key :keys) &#123;</span><br><span class="line">				Userss userss = alls.get(key);</span><br><span class="line">				System.out.println(key+<span class="string">"--"</span>+userss);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mybatis-config.xml 主要内容为：1）.配置数据源.    2.）关联每一个XXXMapper.xml 文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置数据源：mysql连接的参数 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span><span class="comment">&lt;!-- 事务管理器 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span> <span class="comment">&lt;!-- 资源管理 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://127.0.0.1:3306/taobaoshopping?useUnicode=true&amp;amp;characterEncoding=utf8&amp;amp;serverTimezone=GMT%2B8&amp;amp;useSSL=false"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 映射：xml文件，包括声明sql语句  --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- JavaBean名字+Mapper.xml  UserMapper.xml   dao包下--&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 资源文件的应用使用路径的方式 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/mybatis/dao/UserMapper.xml"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--&lt;mapper resource="com/mybatis/dao/ProductMapper.xml"/&gt; --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>小总结：</em></strong></p>
+<p>​    <strong><em>mybatis配置文件会关联XXXMapper.xml文件，XXXMapper.xml又会关联XXXMapper接口文件。</em></strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MyBatis框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SSM框架//" class="article-tag-list-link color1">SSM框架</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SSM框架/MyBatis框架//" class="article-tag-list-link color5">MyBatis框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/15/2019-08-15-MyBatis框架的学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-08-14-SpringMVC-学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/14/2019-08-14-SpringMVC-学习/">SpringMVC 学习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/14/2019-08-14-SpringMVC-学习/" class="archive-article-date">
+  	<time datetime="2019-08-14T01:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SpringMVC :属于Spring一部分web—servlet—前端控制器：DispatcherServlet</p>
+<p>1 . 前端控制器: 对MVC体现</p>
+<p><img src="https://github.com/jumpyboy/jumpyboy.github.io/blob/master/img/201908/1565838834493.png?raw=true" alt="1565838834493"></p>
+<p>1). DispatcherServlet —前端控制器，接收所有请求  web.xml,<strong><em>设置访问配置文件的位置</em></strong></p>
+<p>2). SpringMVC—&gt;@Controller  springmvc配置文件(<strong><em>包扫描，视图解析器</em></strong>)ViewResolver  视图解析器</p>
+<p>3). resources下添加配置文件，但是默认springmvc配置文件在WEB-INF下</p>
+<p>2 . SpringMVC使用步骤 </p>
+<p>1）引入依赖   2个 spring-web\spring-webmvc</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--springmvc  start--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--springmvc  end--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2)  在web.xml中配置前端控制器DispatcherServlet，引入新创建springmvc配置文件，默认位置，WEB-INF，默认的文件名：springmvc-servlet.xml—》web.xml文件</p>
+<p>web.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">version</span>=<span class="string">"3.1"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--项目名--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>spring0812<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--欢迎页--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!--加载spring-ioc.xml配置文件--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring-ioc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span> </span><br><span class="line">    </span><br><span class="line">  <span class="comment">&lt;!--配置前端控制器:修改配置文件的位置 start--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--加载springmvc-servlet.xml--&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc-servlet.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--对所有的请求都处理--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--end--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>spring-ioc.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:util</span>=<span class="string">"http://www.springframework.org/schema/util"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">	http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--扫描service  dao--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"springmvcday03.service,springmvcday03.dao"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--加载数据源连接参数文件，--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">"classpath:jdbc.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:property-placeholder</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--获得数据源--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbcTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.core.JdbcTemplate"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--获取properties文件的内容，通过SpEL表达式$&#123;key&#125;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"$&#123;driverClassName&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;userName&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>dbcp.properties</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">driverClassName</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="attr">url</span>=<span class="string">jdbc:mysql://127.0.0.1:3306/testdemo?serverTimezone=UTC&amp;useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8</span></span><br><span class="line"><span class="attr">userName</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">123456</span></span><br><span class="line"><span class="attr">initialSize</span>=<span class="string">30</span></span><br><span class="line"><span class="attr">maxTotal</span>=<span class="string">30</span></span><br><span class="line"><span class="attr">maxIdle</span>=<span class="string">10</span></span><br><span class="line"><span class="attr">minIdle</span>=<span class="string">5</span></span><br><span class="line"><span class="attr">maxWaitMillis</span>=<span class="string">1000</span></span><br><span class="line"><span class="comment">#程序中的连接不使用后是否被连接池回收</span></span><br><span class="line"><span class="attr">removeAbandonedOnMaintenance</span>=<span class="string">true</span></span><br><span class="line"><span class="attr">removeAbandonedOnBorrow</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<p>3）创建springmvc配置文件，默认位置，WEB-INF，默认的文件名：</p>
+<p>springmvc-servlet.xml</p>
+<p>补充：处理异步请求响应–使用注解@ResponseBody</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--扫描控制层 controller包--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"springmvcday03.controller"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置视图解析器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"viewResolver"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.UrlBasedViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"viewClass"</span></span></span><br><span class="line"><span class="tag">                  <span class="attr">value</span>=<span class="string">"org.springframework.web.servlet.view.JstlView"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--Fastjson数据--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:message-converters</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- MediaTypes --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"supportedMediaTypes"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">value</span>&gt;</span>application/json;charset=utf-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">value</span>&gt;</span>text/json;charset=utf-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">value</span>&gt;</span>text/html;charset=utf-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mvc:message-converters</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--处理静态资源比如：图片，js，css文件等 start--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--end--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>ManagerController.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> springmvcday03.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="comment">//       http://loalhost:8080/spring0812/mgr/all        表示请求地址注解@RequestMapping()可以修饰类也可以修饰方法</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/mgr"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ManagerController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//声明变量----Service层</span></span><br><span class="line">    <span class="comment">//声明方法</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/all"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAllManager</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"=======all-----"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/name"</span>)  <span class="comment">//mgr/name?mgr_id=11&amp;mgr_phone=123456   String m = request.getPatamter("")  Integer.parseInt("1111111alolS")</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">getName</span><span class="params">(<span class="keyword">int</span> mgr_id, HttpServletRequest request, @RequestParam(<span class="string">"mgr_phone"</span>)</span>String phone1)</span>&#123;</span><br><span class="line">        ModelAndView mav = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mav.setViewName(<span class="string">"result"</span>);<span class="comment">//页面相对--WEB-INF页面不能直接通过浏览器访问</span></span><br><span class="line">        mav.addObject(<span class="string">"onename"</span>,<span class="string">"张三"</span>);<span class="comment">//request</span></span><br><span class="line">        System.out.println(mgr_id == <span class="number">11</span>);</span><br><span class="line">        String phone = request.getParameter(<span class="string">"mgr_phone"</span>);</span><br><span class="line">        System.out.println(phone);</span><br><span class="line">        System.out.println(phone1);</span><br><span class="line">        <span class="keyword">return</span> mav;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/one"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span> <span class="comment">//异步请求的响应，此时方法的返回值表示响应的结果</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">one</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/str"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">str</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"String-data"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/getOneMgr"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Manager <span class="title">getManager</span><span class="params">(@RequestParam(<span class="string">"mgr_id"</span>)</span> <span class="keyword">int</span> id)</span>&#123;</span><br><span class="line">        <span class="comment">//Model--Service+dao</span></span><br><span class="line">        Manager manager = <span class="keyword">new</span> Manager();</span><br><span class="line">        manager.setMgr_email(<span class="string">"12546951@qq.com"</span>);</span><br><span class="line">        manager.setMgr_in(<span class="keyword">new</span> Date());</span><br><span class="line">        <span class="keyword">return</span> manager;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/getallMgr"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Manager&gt; <span class="title">getallMgr</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Manager&gt; managers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Manager manager = <span class="keyword">new</span> Manager();</span><br><span class="line">        manager.setMgr_email(<span class="string">"llaolssssd1@qq.com"</span>);</span><br><span class="line">        manager.setMgr_in(<span class="keyword">new</span> Date());</span><br><span class="line">        managers.add(manager);</span><br><span class="line">        Manager manager1 = <span class="keyword">new</span> Manager();</span><br><span class="line">        manager1.setMgr_email(<span class="string">"poplkl@qq.com"</span>);</span><br><span class="line">        manager.setMgr_in(<span class="keyword">new</span> Date());</span><br><span class="line">        managers.add(manager1);</span><br><span class="line">        <span class="keyword">return</span> managers;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/getAllReturnMap"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String,Manager&gt; <span class="title">getMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Map&lt;String,Manager&gt; maps = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        Manager manager = <span class="keyword">new</span> Manager();</span><br><span class="line">        manager.setMgr_email(<span class="string">"llaolssssd1@qq.com"</span>);</span><br><span class="line">        manager.setMgr_in(<span class="keyword">new</span> Date());</span><br><span class="line">        Manager manager1 = <span class="keyword">new</span> Manager();</span><br><span class="line">        manager1.setMgr_email(<span class="string">"poplkl@qq.com"</span>);</span><br><span class="line">        manager.setMgr_in(<span class="keyword">new</span> Date());</span><br><span class="line">        maps.put(<span class="string">"ma01"</span>,manager);</span><br><span class="line">        maps.put(<span class="string">"ma02"</span>,manager1);</span><br><span class="line">        <span class="keyword">return</span> maps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>test.java</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">&lt;%--</span><br><span class="line">  Created by IntelliJ IDEA.</span><br><span class="line">  User: John</span><br><span class="line">  Date: <span class="number">2019</span>/<span class="number">8</span>/<span class="number">14</span></span><br><span class="line">  Time: <span class="number">13</span>:<span class="number">41</span></span><br><span class="line">  To change <span class="keyword">this</span> template use File | Settings | File Templates.</span><br><span class="line">--%&gt;</span><br><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type=<span class="string">"button"</span> value=<span class="string">"one"</span> onclick=<span class="string">"one()"</span>/&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;input type=<span class="string">"button"</span> value=<span class="string">"str"</span> onclick=<span class="string">"str()"</span>/&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;input type=<span class="string">"button"</span> value=<span class="string">"getOneMgr"</span> onclick=<span class="string">"getOneMgr()"</span>/&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;input type=<span class="string">"button"</span> value=<span class="string">"getAllMgr"</span> onclick=<span class="string">"getallMgr()"</span>/&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;input type=<span class="string">"button"</span> value=<span class="string">"getAllReturnMap"</span> onclick=<span class="string">"getAllReturnMap()"</span>/&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">    <span class="function">function <span class="title">one</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            url:<span class="string">"mgr/one"</span>,</span><br><span class="line">            dataType:<span class="string">"json"</span>,</span><br><span class="line">            success:function(data)&#123;</span><br><span class="line">                alert(data);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">function <span class="title">str</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            url:<span class="string">"mgr/str"</span>,</span><br><span class="line">            dataType:<span class="string">"json"</span>,</span><br><span class="line">            success:function(data)&#123;</span><br><span class="line">                alert(data);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">function <span class="title">getOneMgr</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            url:<span class="string">"mgr/getOneMgr?mgr_id=1"</span>,</span><br><span class="line">            dataType:<span class="string">"json"</span>,</span><br><span class="line">            success:function(data)&#123;</span><br><span class="line">                alert(data.mgr_email);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">function <span class="title">getallMgr</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            url:<span class="string">"mgr/getallMgr"</span>,</span><br><span class="line">            dataType:<span class="string">"json"</span>,</span><br><span class="line">            success:function(data)&#123;</span><br><span class="line">                alert(<span class="string">"个数："</span>+data.length);</span><br><span class="line">                $.each(data,function(index,item)&#123;</span><br><span class="line">                    alert(item.mgr_email);</span><br><span class="line">                    alert(data[index].mgr_in);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">function <span class="title">getAllReturnMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            url:<span class="string">"mgr/getAllReturnMap"</span>,</span><br><span class="line">            dataType:<span class="string">"json"</span>,</span><br><span class="line">            success:function(data)&#123;<span class="comment">//data---数组</span></span><br><span class="line">                $.each(data,function(index,item)&#123;</span><br><span class="line">                    alert(item.mgr_email);</span><br><span class="line">                    alert(data[index].mgr_in);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>补充：</p>
+<p>3、i18n国际化</p>
+<p>1）添加语言配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--默认语言--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"localeResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.i18n.SessionLocaleResolver"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultLocale"</span> <span class="attr">value</span>=<span class="string">"zh_CN"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--负责加载外部语言文件的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"messageSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.context.support.ReloadableResourceBundleMessageSource"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basename"</span> <span class="attr">value</span>=<span class="string">"classpath:message"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultEncoding"</span> <span class="attr">value</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2）resources下添加中英文语言properties文件</p>
+<p>3）控制器切换语言</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"changeLocale"</span>,method= RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">changeLocale</span><span class="params">(String request_locale, HttpServletRequest req)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//设置中文环境</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"zh_CN"</span>.equals(request_locale)) &#123;</span><br><span class="line">        Locale locale = <span class="keyword">new</span> Locale(<span class="string">"zh"</span>,<span class="string">"CN"</span>);</span><br><span class="line">        req.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);</span><br><span class="line">        <span class="comment">//设置英文环境</span></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"en_US"</span>.equals(request_locale)) &#123;</span><br><span class="line">        Locale locale = <span class="keyword">new</span> Locale(<span class="string">"en"</span>,<span class="string">"US"</span>);</span><br><span class="line">        req.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME,locale);</span><br><span class="line">        <span class="comment">//使用之前的语言环境</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        req.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, LocaleContextHolder.getLocale());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4）jsp页面通过&lt;spring：message&gt;标签获取properties文件中value</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@taglib</span> prefix=<span class="string">"spring"</span> uri=<span class="string">"http://www.springframework.org/tags"</span> %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>4.注意：</p>
+<p>处理静态资源比如：图片，js，css文件等，要在servletmvc-servlet.xml文件中加入，<a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a>  和 <a href="mvc:annotation-driven/" target="_blank" rel="noopener">mvc:annotation-driven/</a>；</p>
+<p>并且在jsp页面中写入上下文路径，例如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"$&#123;pageContext.request.contextPath&#125;/static/h-ui/css/H-ui.min.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SSM框架//" class="article-tag-list-link color1">SSM框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/14/2019-08-14-SpringMVC-学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-08-13-Spring-jdbc的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1695,204 +1959,6 @@
 
 
   
-    <article id="post-MySQL基础二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/29/MySQL基础二/">Mysql基础（二）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/29/MySQL基础二/" class="archive-article-date">
-  	<time datetime="2019-07-29T10:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一.基本的条件判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">= &gt; &lt; &gt;= &lt;= != 或or 且and 非!</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//1.需求：查询前8条数据</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span>  product <span class="keyword">where</span>/pro_id &gt;= <span class="number">8</span>;//,1~8     </span><br><span class="line">//2.分页操作，每页8条数据，startIndex(0)<span class="comment">--pageSize(每页显示的商品数量)     </span></span><br><span class="line"><span class="keyword">select</span>  * <span class="keyword">from</span>  <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">8</span>;      </span><br><span class="line">//3.查询商品的分类编号，去重复</span><br><span class="line">//Distinct 字段名</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> classify_id <span class="keyword">from</span> product;</span><br><span class="line">//4.需求:查询所有货品的编号，名称，和各进货50个的成本价，定义别名</span><br><span class="line"><span class="keyword">select</span> pro_id 编号,pro_name 名称,(selling_price-profit)*<span class="number">50</span> 购买<span class="number">50</span>个的成本价 <span class="keyword">from</span> product;</span><br><span class="line">//5.需求:查询商品的名字和零售价。</span><br><span class="line">    // 格式：xxx商品的零售价为：xxx</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'每售出一个'</span>,pro_name,<span class="string">'产品，赚取：'</span>,profit,<span class="string">'元'</span>) 结果 <span class="keyword">from</span> product;</span><br><span class="line">//6.between  x1   and   x2 操作符：表示某一个范围区间</span><br><span class="line">//not  between  x1   and   x2</span><br><span class="line">//常使用在数字类型数据的范围上，对于字符类型数据和日期类型数据也可用。</span><br><span class="line">//需求: 选择id，货品名称，售价在80-100之间的货品</span><br><span class="line"><span class="keyword">select</span> pro_id,pro_name <span class="keyword">from</span> product <span class="keyword">where</span> selling_price <span class="keyword">between</span> <span class="number">80</span> <span class="keyword">and</span> <span class="number">100</span>;</span><br><span class="line">//7.时间差。date_sub(出库时间  , interval  数字  单位)=入库时间</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">interval 1 hour;       -1小时</span></span><br><span class="line"><span class="comment">interval 1 minute;    - 1分钟</span></span><br><span class="line"><span class="comment">interval 1 second;    -1秒</span></span><br><span class="line"><span class="comment">interval 1 week;		-1周</span></span><br><span class="line"><span class="comment">interval 1 month;		-1月</span></span><br><span class="line"><span class="comment">interval 1 quarter;		-1季</span></span><br><span class="line"><span class="comment">interval 1 year;	-1年</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">//需求：选择商品编号，库存数量，出库时间和入库时间相差一天的商品。</span><br><span class="line"><span class="keyword">select</span> pro_id,pro_count <span class="keyword">from</span> stock <span class="keyword">where</span> <span class="keyword">date_sub</span>(last_out_time,<span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">day</span>)=last_in_time;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/07/29/MySQL基础二/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/29/MySQL基础二/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MySQL基础一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/29/MySQL基础一/">Mysql基础（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/29/MySQL基础一/" class="archive-article-date">
-  	<time datetime="2019-07-29T02:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一.<strong>MySql</strong>基础SQL应用：关系型数据库，菲关系型数据库。关系型数据库：是指采用了<strong><em>关系模型</em></strong>来组织数据的数据库，其以<strong><em>行和列</em></strong>的形式存储数据，以便用户理解，关系数据库这一系列的行和列被称为表，一组表组成了数据库。<br>Oracle、DB2、PostgreSQL、Microsoft SQL Server、Microsoft Access、MySQL</p>
-<p>非关系型数据库：又被称为NoSQL（Not Only SQL )，对NoSQL 最普遍的定义是“非关联型的”，强调Key-Value 存储</p>
-<p>NoSql、Cloudant、MongoDB、redis、HBase</p>
-<p>二.<strong>SQL语句分类</strong></p>
-<p>1）<strong>数据查询语言DQL</strong>    Query**<br> 数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE<br> SELECT &lt;字段名表&gt;FROM &lt;表或视图名&gt;WHERE &lt;查询条件&gt;</p>
-<p> 2）<strong>数据操纵语言DML</strong>    Manipulation**<br> 数据操纵语言DML主要有三种形式：<br> 1) -插入：INSERT<br> 2) -更新：UPDATE<br> 3) -删除：DELETE</p>
-        
-          <a class="article-more-a" href="/2019/07/29/MySQL基础一/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mysql/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/29/MySQL基础一/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1990,11 +2056,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MyBatis框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring-jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MyBatis框架</a>
+                <a href="javascript:void(0)" class="js-tag color3">Xshell6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Xftp6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2038,15 +2112,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2110,15 +2184,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">IO流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">图片服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">IO流</a>
               </li>
              
               <li class="article-tag-list-item">

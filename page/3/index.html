@@ -160,6 +160,204 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL基础二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/29/MySQL基础二/">Mysql基础（二）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/29/MySQL基础二/" class="archive-article-date">
+  	<time datetime="2019-07-29T10:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一.基本的条件判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">= &gt; &lt; &gt;= &lt;= != 或or 且and 非!</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//1.需求：查询前8条数据</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span>  product <span class="keyword">where</span>/pro_id &gt;= <span class="number">8</span>;//,1~8     </span><br><span class="line">//2.分页操作，每页8条数据，startIndex(0)<span class="comment">--pageSize(每页显示的商品数量)     </span></span><br><span class="line"><span class="keyword">select</span>  * <span class="keyword">from</span>  <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">8</span>;      </span><br><span class="line">//3.查询商品的分类编号，去重复</span><br><span class="line">//Distinct 字段名</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> classify_id <span class="keyword">from</span> product;</span><br><span class="line">//4.需求:查询所有货品的编号，名称，和各进货50个的成本价，定义别名</span><br><span class="line"><span class="keyword">select</span> pro_id 编号,pro_name 名称,(selling_price-profit)*<span class="number">50</span> 购买<span class="number">50</span>个的成本价 <span class="keyword">from</span> product;</span><br><span class="line">//5.需求:查询商品的名字和零售价。</span><br><span class="line">    // 格式：xxx商品的零售价为：xxx</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'每售出一个'</span>,pro_name,<span class="string">'产品，赚取：'</span>,profit,<span class="string">'元'</span>) 结果 <span class="keyword">from</span> product;</span><br><span class="line">//6.between  x1   and   x2 操作符：表示某一个范围区间</span><br><span class="line">//not  between  x1   and   x2</span><br><span class="line">//常使用在数字类型数据的范围上，对于字符类型数据和日期类型数据也可用。</span><br><span class="line">//需求: 选择id，货品名称，售价在80-100之间的货品</span><br><span class="line"><span class="keyword">select</span> pro_id,pro_name <span class="keyword">from</span> product <span class="keyword">where</span> selling_price <span class="keyword">between</span> <span class="number">80</span> <span class="keyword">and</span> <span class="number">100</span>;</span><br><span class="line">//7.时间差。date_sub(出库时间  , interval  数字  单位)=入库时间</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">interval 1 hour;       -1小时</span></span><br><span class="line"><span class="comment">interval 1 minute;    - 1分钟</span></span><br><span class="line"><span class="comment">interval 1 second;    -1秒</span></span><br><span class="line"><span class="comment">interval 1 week;		-1周</span></span><br><span class="line"><span class="comment">interval 1 month;		-1月</span></span><br><span class="line"><span class="comment">interval 1 quarter;		-1季</span></span><br><span class="line"><span class="comment">interval 1 year;	-1年</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">//需求：选择商品编号，库存数量，出库时间和入库时间相差一天的商品。</span><br><span class="line"><span class="keyword">select</span> pro_id,pro_count <span class="keyword">from</span> stock <span class="keyword">where</span> <span class="keyword">date_sub</span>(last_out_time,<span class="built_in">interval</span> <span class="number">1</span> <span class="keyword">day</span>)=last_in_time;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/07/29/MySQL基础二/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/29/MySQL基础二/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MySQL基础一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/29/MySQL基础一/">Mysql基础（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/29/MySQL基础一/" class="archive-article-date">
+  	<time datetime="2019-07-29T02:30:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一.<strong>MySql</strong>基础SQL应用：关系型数据库，菲关系型数据库。关系型数据库：是指采用了<strong><em>关系模型</em></strong>来组织数据的数据库，其以<strong><em>行和列</em></strong>的形式存储数据，以便用户理解，关系数据库这一系列的行和列被称为表，一组表组成了数据库。<br>Oracle、DB2、PostgreSQL、Microsoft SQL Server、Microsoft Access、MySQL</p>
+<p>非关系型数据库：又被称为NoSQL（Not Only SQL )，对NoSQL 最普遍的定义是“非关联型的”，强调Key-Value 存储</p>
+<p>NoSql、Cloudant、MongoDB、redis、HBase</p>
+<p>二.<strong>SQL语句分类</strong></p>
+<p>1）<strong>数据查询语言DQL</strong>    Query**<br> 数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE<br> SELECT &lt;字段名表&gt;FROM &lt;表或视图名&gt;WHERE &lt;查询条件&gt;</p>
+<p> 2）<strong>数据操纵语言DML</strong>    Manipulation**<br> 数据操纵语言DML主要有三种形式：<br> 1) -插入：INSERT<br> 2) -更新：UPDATE<br> 3) -删除：DELETE</p>
+        
+          <a class="article-more-a" href="/2019/07/29/MySQL基础一/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql//" class="article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/29/MySQL基础一/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-线程的学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1131,11 +1329,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MyBatis框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring-jdbc</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MyBatis框架</a>
+                <a href="javascript:void(0)" class="js-tag color3">Xshell6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Xftp6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1179,15 +1385,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">hello word</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1251,15 +1457,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">IO流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">图片服务器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">IO流</a>
               </li>
              
               <li class="article-tag-list-item">
