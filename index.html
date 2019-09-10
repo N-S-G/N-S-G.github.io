@@ -190,85 +190,9 @@
 <p><strong>2、在web应用开发过程中经常遇到输出某种编码的字符，如ISO8859-1等</strong></p>
 <p>String s=new String(str.getBytes(“ISO-8859-1”),”GBK”);</p>
 <p>s=s.trim();</p>
-<p><strong>3、原始类型与引用类型</strong></p>
-<ul>
-<li>原始类型: boolean，char，byte，short，int，long，float，double</li>
-<li>包装类型：Boolean，Character，Byte，Short，Integer，Long，Float，Double</li>
-</ul>
-<p><strong>4、String，StringBuilder，StringBuffer</strong></p>
-<p>String：操作的字符串较少。不可修改的字符串。</p>
-<p>StringBuilder：单线程且操作大量字符串，具有速度快，可修改，但不线程安全的特点。</p>
-<p>StringBuffer：多线程且操作大量字符串，具有可修改，线程安全的特点。</p>
-<p>java.lang.String类是final类型的，因此不可以继承这个类、不能修改这个类。为了提高效率节省空间，我们应该用StringBuffer类。</p>
-<p><strong>5、请你讲讲数组（Array）和列表（ArrayList）的区别?以及他们各自运用在什么地方？</strong></p>
-<p>Array和ArrayList的不同点：</p>
-<p>Array可以包含基本类型和对象类型，ArrayList只能包含对象类型。</p>
-<p>Array大小是固定的，ArrayList的大小是动态变化的。</p>
-<p>ArrayList提供了更多的方法和特性，比如：addAll（），removerAll（），iterator（）等等</p>
-<p>对于基本类型数据，集合使用自动装箱来减少编码工作量，但是，当处理固定大小的基本数据类型的时候，这种方式相对较慢。</p>
-<p>自动装箱是java编译器在基本数据类型和对应的对象包装类型之间做的一个转化。比如：把int转换成Integer，double转换为Double等等，反之就是自动拆箱。</p>
-<p><strong>6、请解释为什么会出现4.0-3.6=0.4000000001这种现象？</strong></p>
-<p>简单的原因是因为：2进制无法精确的表达10进制小数。因为计算机计算10进制数时需要先转换为2进制进行计算，而这个过程出现了误差。</p>
-<p><strong>7、请你说说Lamda表达式的优缺点</strong></p>
-<p>优点：简洁；非常容易并行计算（流水线作业，这一批XXX，而不是这一批挨个XXX）；可能 代表未来的变成趋势</p>
-<p>缺点：若不采用并行计算，很多时候计算速度没有比传统的for循环快（并行计算有时小预热才能显示出来效率优势）；不容易调试；若其他程序员没有学过Lamda表达式，代码不容易让其他语言的程序员看懂。</p>
-<p><strong>8,、什么是lamda表达式</strong></p>
-<p>“Lambda 表达式”(lambda expression)是一个<a href="https://baike.baidu.com/item/匿名函数/4337265" target="_blank" rel="noopener">匿名函数</a>，Lambda表达式基于数学中的<a href="https://baike.baidu.com/item/λ演算" target="_blank" rel="noopener">λ演算</a>得名，直接对应于其中的lambda抽象(lambda abstraction)，是一个匿名函数，即没有函数名的函数。Lambda表达式可以表示<a href="https://baike.baidu.com/item/闭包/10908873" target="_blank" rel="noopener">闭包</a>（注意和数学传统意义上的不同）。</p>
-<p>Lambda表达式的语法格式：</p>
-<p>​        <strong>参数列表 =&gt; 语句或语句块 [1]</strong> </p>
-<p>其中“参数列”中可包含任意个参数(与委托对应），如果参数列中有0个或1个以上参数，则必须使用括号括住参数列，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`x =&gt; x + 1                              ``// Implicitly typed, expression body``x =&gt; &#123; ``return` `x + 1; &#125;                  ``// Implicitly typed, statement body``(``int` `x) =&gt; x + 1                        ``// Explicitly typed, expression body``(``int` `x) =&gt; &#123; ``return` `x + 1; &#125;            ``// Explicitly typed, statement body``(x, y) =&gt; x * y                         ``// Multiple parameters``() =&gt; Console.WriteLine()               ``// No parameters``async (t1,t2) =&gt; await t1 + await t2    ``// Async``delegate` `(``int` `x) &#123; ``return` `x + 1; &#125;      ``// Anonymous method expression``delegate` `&#123; ``return` `1 + 1; &#125;              ``// Parameter list omitted`</span><br></pre></td></tr></table></figure>
-
-<p>如果“语句或语句块”有返回值时，如果只有一条语句则可以不输写“return”语句，<a href="https://baike.baidu.com/item/编译器" target="_blank" rel="noopener">编译器</a>会自动处理，否则必须加上，如下示例：</p>
-<p>“Lambda表达式”是委托的实现方法，所以必须遵循以下规则：</p>
-<p>1）“Lambda表达式”的参数数量必须和“委托”的参数数量相同；</p>
-<p>2）如果“委托”的参数中包括有ref或out<a href="https://baike.baidu.com/item/修饰符" target="_blank" rel="noopener">修饰符</a>，则“Lambda表达式”的参数列中也必须包括有修饰符；</p>
-<p>3）如果“委托”有返回类型，则“Lambda表达式”的“语句或语句块”中也必须返回相同类型的数据；</p>
-<p>4）如果“委托”有几种数据类型格式而在“Lambda表达式”中“<a href="https://baike.baidu.com/item/编译器" target="_blank" rel="noopener">编译器</a>”无法推断具体数据类型时，则必须手动明确数据类型</p>
-<p>错误例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class` `Test</span><br><span class="line">&#123;</span><br><span class="line">	delegate` `TAddHandler&lt;T&gt; (Tx, Ty);</span><br><span class="line">	</span><br><span class="line">    static` `void` `Print(AddHandler&lt;`int``&gt; test)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;int type:&#123;0&#125;&quot;,test(1, 2));</span><br><span class="line">    &#125;</span><br><span class="line">    static` `void` `Print(AddHandler&lt;``double``&gt; test)</span><br><span class="line">  &#123;</span><br><span class="line">        Console.WriteLine(``&quot;doubletype:&#123;0&#125;&quot;``,test(1d, 2d));</span><br><span class="line">    &#125;</span><br><span class="line">    static` `void` `Main(``string``[] args)</span><br><span class="line">    &#123;</span><br><span class="line">        Print((x, y) =&gt; x+y);			/错误行</span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>所以我们必须明确数据类型给编译器，如下</p>
-<p>print（int x，int y）=》x+y   这样到吗就能  编译通过了。</p>
-<p>Java 8的一个大亮点是引入Lambda表达式，使用它设计的代码会更加简洁。当开发者在编写Lambda表达式时，也会随之被编译成一个函数式接口。下面这个例子就是使用Lambda语法来代替匿名的内部类，代码不仅简洁，而且还可读。在某种程度上，这些功能在Scala等这些JVM语言里已经被广泛使用。</p>
-<p>java         eg1：</p>
-<p>没有使用Lambda的老方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">button.addActionListener(``new` `ActionListener()&#123;</span><br><span class="line">    ``public` `void` `actionPerformed(ActionEvent actionEvent)&#123;</span><br><span class="line">        ``System.out.println(``&quot;Action detected&quot;``);</span><br><span class="line">    ``&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>使用Lambda：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button.addActionListener( actionEvent -&gt; &#123; </span><br><span class="line">    ``System.out.println(``&quot;Action detected&quot;``);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<p>不采用Lambda的老方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable1=``new` `Runnable()&#123;</span><br><span class="line">@Override</span><br><span class="line">public` `void` `run()&#123;</span><br><span class="line">    ``System.out.println(``&quot;Running without Lambda&quot;``);</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>使用Lambda：</p>
-<p><code>Runnable runnable2=()-&gt;System.out.println(``&quot;Running from Lambda&quot;``);</code></p>
-<p><strong>9、你知道java8的新特性吗？请简单介绍一下</strong></p>
-<p><strong>Lambda 表达式</strong> − Lamda允许把函数作为一个方法的参数（函数作为参数传递进方法中）。</p>
-<p><strong>方法引用−</strong> 方法引用提供了非常有用的语法，可以直接引用已有Java类或对象（实例）的方法或构造器。与lambda联合使用，方法引用可以使语言的构造更紧凑简洁，减少冗余代码。</p>
-<p><strong>默认方法</strong>− 默认方法就是一个在接口里面有了一个实现的方法。</p>
-<p><strong>新工具</strong>− 新的编译工具，如：Nashorn引擎 jjs、 类依赖分析器jdeps。</p>
-<p><strong>Stream API</strong> −新添加的Stream API（java.util.stream） 把真正的函数式编程风格引入到Java中。</p>
-<p><strong>Date Time API</strong> − 加强对日期与时间的处理。</p>
-<p><strong>Optional 类</strong> − Optional 类已经成为 Java 8 类库的一部分，用来解决空指针异常。</p>
-<p><strong>Nashorn, JavaScript 引擎</strong> − Java 8提供了一个新的Nashorn javascript引擎，它允许我们在JVM上运行特定的javascript应用。</p>
-<p><strong>10、请你说明符号“==”比较的是什么</strong></p>
-<p>“==”对比两个对象基于内存引用，如果两个对象的引用完全相同（指向同一个对象）时，“==”操作将返回true，否则返回true。</p>
-<p>“==”如果两边是基本类型，就是比较数值是否相同。</p>
-<p><strong>11、请你解释Object若不重写hashCode()的话，hashCode()如何计算出来的？</strong></p>
-<p>Object 的 hashcode 方法是本地方法，也就是用 c 语言或 c++ 实现的，该方法直接返回对象的 内存地址。</p>
-<p><strong>12、请你解释为什么重写equals还要重写hashcode？</strong></p>
-<p>HashMap中，如果要比较key是否相等，要同时使用这两个函数！因为自定义的类的hashcode()方法继承于Object类，其hashcode码为默认的内存地址，这样即便有相同含义的两个对象，比较也是不相等的。HashMap中的比较key是这样的，先求出key的hashcode(),比较其值是否相等，若相等再比较equals(),若相等则认为他们是相等的。若equals()不相等则认为他们不相等。如果只重写hashcode()不重写equals()方法，当比较equals()时只是看他们是否为同一对象（即进行内存地址的比较）,所以必定要两个方法一起重写。HashMap用来判断key是否相等的方法，其实是调用了HashSet判断加入元素 是否相等。重载hashCode()是为了对同一个key，能得到相同的Hash Code，这样HashMap就可以定位到我们指定的key上。重载equals()是为了向HashMap表明当前对象和key上所保存的对象是相等的，这样我们才真正地获得了这个key所对应的这个键值对。</p>
-<p><strong>13、请你介绍一下map的分类和常见的情况</strong></p>
-<p>java为数据结构中的映射定义了一个接口java.util.Map;它有四个实现类,分别是HashMap Hashtable LinkedHashMap 和TreeMap.</p>
-<p>Map主要用于存储健值对，根据键得到值，因此不允许键重复(重复了覆盖了),但允许值重复。</p>
-<p>Hashmap 是一个最常用的Map,它根据键的HashCode值存储数据,根据键可以直接获取它的值，具有很快的访问速度，遍历时，取得数据的顺序是完全随机的。 HashMap最多只允许一条记录的键为Null;允许多条记录的值为 Null;HashMap不支持线程的同步，即任一时刻可以有多个线程同时写HashMap;可能会导致数据的不一致。如果需要同步，可以用 Collections的synchronizedMap方法使HashMap具有同步的能力，或者使用ConcurrentHashMap。</p>
-<p>Hashtable与 HashMap类似,它继承自Dictionary类，不同的是:它不允许记录的键或者值为空;它支持线程的同步，即任一时刻只有一个线程能写Hashtable,因此也导致了 Hashtable在写入时会比较慢。</p>
-<p>LinkedHashMap 是HashMap的一个子类，保存了记录的插入顺序，在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的.也可以在构造时用带参数，按照应用次数排序。在遍历的时候会比HashMap慢，不过有种情况例外，当HashMap容量很大，实际数据较少时，遍历起来可能会比 LinkedHashMap慢，因为LinkedHashMap的遍历速度只和实际数据有关，和容量无关，而HashMap的遍历速度和他的容量有关。</p>
-<p>TreeMap实现SortMap接口，能够把它保存的记录根据键排序,默认是按键值的升序排序，也可以指定排序的比较器，当用Iterator 遍历TreeMap时，得到的记录是排过序的。</p>
-<p>一般情况下，我们用的最多的是HashMap,在Map 中插入、删除和定位元素，HashMap 是最好的选择。但如果您要按自然顺序或自定义顺序遍历键，那么TreeMap会更好。如果需要输出的顺序和输入的相同,那么用LinkedHashMap 可以实现,它还可以按读取顺序来排列.</p>
-
+        
+          <a class="article-more-a" href="/2019/09/10/2019-09-10-java-SE部分(一)/#more">more >></a>
+        
       
 
       
@@ -1563,19 +1487,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Xshell6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Xftp6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">sort</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图片上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Xshell6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Xftp6</a>
               </li>
              
               <li class="article-tag-list-item">
